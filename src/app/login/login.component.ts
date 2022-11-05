@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
         this.error = data.message
       } else {
         if(data.isActivated) {
-          console.log(data)
           this.error = null;
           localStorage.setItem("token", data.key)
+          localStorage.setItem("username", username)
           this.router.navigate([`/${username}`])
         } else {
           this.router.navigate([`/setup`])

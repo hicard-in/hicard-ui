@@ -9,8 +9,11 @@ import { HttpClient } from '@angular/common/http';
 
 
 export class MainService {
+
+  userProfile:any;
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   login(username:string, password:string) {
     return this.http.post(environment.apiUrl+"user/login", {
@@ -33,6 +36,14 @@ export class MainService {
         'api-token': token
       }
     })
+  }
+
+  async getProfile(username:string) {
+    if(!this.userProfile) {
+      let res:any = await this.http.get(environment.apiUrl+"user/"+username).toPromise()
+      this.userProfile = res
+    }
+    return this.userProfile
   }
 
 }

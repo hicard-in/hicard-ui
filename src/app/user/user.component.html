@@ -1,24 +1,26 @@
-<section class="content-user">
+<app-loading *ngIf="!profile"></app-loading>
+<section class="content-user" *ngIf="profile">
   
   <div class="header-card">
     <div class="banner">
       <span class="profile-photo">
-        <img src="/assets/profile.jpg" alt="">
+        <img src="{{profile.photo}}" alt="">
       </span>
     </div>
     <div class="profile-info">
       <span class="name">
-        Vishal Pandey
+        {{profile.name}}
       </span>
-      <span class="designation">Tech Product</span>
+      <span class="designation">{{profile.bio.title}}</span>
       <div class="company-location-education">
-        <span class="company">Lumiq</span>
-        <span class="location">Delhi</span>
-        <span class="education">B.Tech + M.Tech</span>
+        <span class="company">{{profile.bio.work}}</span>
+        <span class="location">{{profile.bio.location}}</span>
+        <span class="education">{{profile.bio.education}}</span>
       </div>
       <div class="skills">
-        <span class="skill">StartUp</span>
-        <span class="skill">Coding</span>
+        <span class="skill" *ngFor="let skill of profile.skill">{{skill}}</span>
+        <!-- <span class="skill">StartUp</span>
+        <span class="skill">Coding</span> -->
       </div>
     </div>
   </div>

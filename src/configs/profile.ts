@@ -1,0 +1,23 @@
+export const profileOrder = [
+  "website",
+  "email",
+  "phone",
+  "whatsapp",
+  "discord",
+  "telegram",
+  "linkedIn",
+  "instagram",
+  "twitter",
+  "facebook",
+  "youtube",
+  "snapchat",
+  "clubhouse",
+  "twitch",
+  "paypal",
+  "paytm",
+  "gpay",
+  "phonepe",
+  "calendly",
+  "notion",
+  "gdrive"
+];
