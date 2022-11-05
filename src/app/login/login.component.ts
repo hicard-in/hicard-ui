@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MainService } from '../main.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,8 +33,14 @@ export class LoginComponent implements OnInit {
       if(data.err) {
         this.error = data.message
       } else {
-        this.error = null;
-        localStorage.setItem("token", data.key)
+        if(data.isActivated) {
+          console.log(data)
+          this.error = null;
+          localStorage.setItem("token", data.key)
+          this.router.navigate([`/${username}`])
+        } else {
+          this.router.navigate([`/setup`])
+        }
       }
     })
 

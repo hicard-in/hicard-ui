@@ -23,4 +23,16 @@ export class MainService {
     })
   }
 
+  signup(username:string, password:string) {
+    let token = String(localStorage.getItem("token"))
+    return this.http.put(environment.apiUrl+"user/signup", {
+      username,
+      password
+    }, {
+      headers: {
+        'api-token': token
+      }
+    })
+  }
+
 }
