@@ -125,7 +125,22 @@ export class MainService {
   }
 
   saveProfile() {
-    console.log(JSON.stringify(this.profileFG.value) === JSON.stringify(this.profileValues))
+    if(JSON.stringify(this.profileFG.value) === JSON.stringify(this.profileValues)) {
+
+    } else {
+      this.updateProfile(this.profileFG.value)
+    }
+  }
+
+  async updateProfile(profileValue:any) {
+    let token = String(localStorage.getItem('token'))
+    this.http.put(environment.apiUrl+"profile", profileValue, {
+      headers: {
+        'api-token': token
+      }
+    }).subscribe((data)=> {
+      console.log(data)
+    })
   }
 
 }
