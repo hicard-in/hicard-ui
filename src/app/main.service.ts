@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { settings } from 'src/configs/settings';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,13 @@ import { HttpClient } from '@angular/common/http';
 export class MainService {
 
   userProfile:any;
+  profileValues:any;
+  isSubscribing:boolean = false;
   
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+  ) {
   }
 
   login(username:string, password:string) {
@@ -42,8 +49,83 @@ export class MainService {
     if(!this.userProfile) {
       let res:any = await this.http.get(environment.apiUrl+"user/"+username).toPromise()
       this.userProfile = res
+      this.profileFG.patchValue(this.userProfile?.profile?.[0])
+    }
+    // console.log(this.userProfile?.profile?.[0])
+
+    if(!this.isSubscribing) {
+      this.profileFG.valueChanges.subscribe((data)=>{
+        this.saveProfile();
+      })
+      this.isSubscribing = true
+      this.profileValues = this.profileFG.value;
     }
     return this.userProfile
+  }
+
+  
+  getLinkFormControlList() {
+    return [
+      new FormControl(null, {updateOn: 'blur'}),
+      new FormControl(null, {updateOn: 'blur'}),
+      new FormControl(null, {updateOn: 'blur'}),
+      new FormControl(null, {updateOn: 'blur'}),
+      new FormControl(null, {updateOn: 'blur'})
+    ]
+
+  }
+
+  profileFG: FormGroup = this.fb.group({
+    name: ['',  {updateOn: 'blur'}],
+    photo: ['',  {updateOn: 'blur'}],
+    banner: ['',  {updateOn: 'blur'}],
+    bio: this.fb.group({
+      title: ['',  {updateOn: 'blur'}],
+      work: ['',  {updateOn: 'blur'}],
+      education: ['',  {updateOn: 'blur'}],
+      location: ['',  {updateOn: 'blur'}]
+    }),
+    skill: this.fb.array(['',  {updateOn: 'blur'}]),
+    contact_info: this.fb.group({
+      website: this.fb.array(this.getLinkFormControlList()),
+      email: this.fb.array(this.getLinkFormControlList()),
+      phone: this.fb.array(this.getLinkFormControlList()),
+      whatsapp: this.fb.array(this.getLinkFormControlList()),
+      discord: this.fb.array(this.getLinkFormControlList()),
+      telegram: this.fb.array(this.getLinkFormControlList())
+    }),
+
+    social_links: this.fb.group({
+      linkedIn: this.fb.array(this.getLinkFormControlList()),
+      instagram: this.fb.array(this.getLinkFormControlList()),
+      twitter: this.fb.array(this.getLinkFormControlList()),
+      facebook: this.fb.array(this.getLinkFormControlList()),
+      youtube: this.fb.array(this.getLinkFormControlList()),
+      snapchat: this.fb.array(this.getLinkFormControlList())
+    }),
+
+    payment: this.fb.group({
+      paypal: this.fb.array(this.getLinkFormControlList()),
+      gpay: this.fb.array(this.getLinkFormControlList()),
+      upi: this.fb.array(this.getLinkFormControlList())
+    }),
+
+    productivity: this.fb.group({
+      calendly: this.fb.array(this.getLinkFormControlList()),
+      notion: this.fb.array(this.getLinkFormControlList()),
+      gdrive: this.fb.array(this.getLinkFormControlList())
+    }),
+
+
+
+  })
+
+  getProfileFG() {
+    return this.profileFG
+  }
+
+  saveProfile() {
+    console.log(JSON.stringify(this.profileFG.value) === JSON.stringify(this.profileValues))
   }
 
 }

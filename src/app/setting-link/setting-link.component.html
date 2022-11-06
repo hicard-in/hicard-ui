@@ -2,33 +2,35 @@
   <section class="header">
     <span class="back-button" routerLink="/setting"><i class="fa-solid fa-circle-arrow-left"></i></span>
     <span class="title">
-      Edit Website
+      Edit {{setting[category][linkType]['title']}}s
     </span>
   </section>
 
-  <section class="card-list">
-    <div class="thecard">
-      <div class="main-area">
-        <div class="icon"><i class="fa-brands fa-safari"></i></div>
-        <div class="info-and-action">
-          <span class="title">Website</span>
-          <button class="delete">Delete Link</button>
-          <button class="test">Test Link <i class="fa-solid fa-up-right-from-square"></i></button>
+  <section class="card-list" [formGroup]="sectionFG">
+
+    <ng-container [formArrayName]="linkType" *ngFor="let fc of linkFG.controls; let i = index">
+      <div class="thecard" *ngIf="fc.value || i < theLimit">
+        <div class="main-area">
+          <div class="icon"><i class="{{setting[category][linkType]['icon']}}"></i></div>
+          <div class="info-and-action">
+            <span class="title">{{setting[category][linkType]['title']}}</span>
+            <button class="delete">Delete Link</button>
+            <button class="test">Test Link <i class="fa-solid fa-up-right-from-square"></i></button>
+          </div>
+        </div>
+        <div class="input-area">
+          <mat-form-field class="input-field" appearance="outline">
+            <mat-label class="thelabel">{{setting[category][linkType]['title']}}</mat-label>
+            <input type="text" matInput [formControlName]="i">
+          </mat-form-field>
         </div>
       </div>
-      <div class="input-area">
-        <mat-form-field class="input-field" appearance="outline">
-          <mat-label class="thelabel">Website</mat-label>
-          <input type="text" matInput>
-        </mat-form-field>
-      </div>
-    </div>
-
+    </ng-container>
 
   </section>
 
   <section class="bottom-actions">
     <!-- <button class="close">Close</button> -->
-    <button class="another">Add Another</button>
+    <button class="another" (click)="addAnother()">Add Another</button>
   </section>
 </section>

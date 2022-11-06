@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router';
+import { settings } from 'src/configs/settings';
+import { MainService } from '../main.service';
 
 @Component({
   selector: 'app-setting-link',
@@ -7,9 +11,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingLinkComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private mainService: MainService,
+    private route:ActivatedRoute,
+    private router: Router
+  ) { 
+    this.category = this.route.snapshot.params['category'];
+    this.linkType = this.route.snapshot.params['id'];
+    this.profileFG = this.mainService.profileFG
+    this.sectionFG = this.profileFG.get(this.category) as FormGroup
+    this.linkFG = this.profileFG.get(this.category+'.'+this.linkType) as FormArray
+    this.setting = settings
+    this.theLimit = 1
+  }
 
-  ngOnInit(): void {
+  profileFG:FormGroup
+  sectionFG:FormGroup
+  linkFG:FormArray
+
+  category:string
+  linkType:string
+
+  setting:any;
+  theLimit:number;
+
+  async ngOnInit() {
+    let username = String(localStorage.getItem('username'))
+    let userProfile = await this.mainService.getProfile(username)
+  }
+
+  addAnother() {
+    this.theLimit++;
   }
 
 }

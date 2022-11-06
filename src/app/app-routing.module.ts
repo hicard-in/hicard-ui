@@ -26,7 +26,7 @@ const routes: Routes = [
     component: SettingComponent
   },
   {
-    "path": "setting/:id",
+    "path": "setting/:category/:id",
     component: SettingLinkComponent
   },
   {
