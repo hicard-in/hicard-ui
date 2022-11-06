@@ -35,39 +35,13 @@
   </div>
 
   <div class="links">
-    <div class="link">
+    <div class="link" *ngFor="let link of linksList">
       <span class="img">
-        <i class="fa-brands fa-safari"></i>
+        <i class="{{link.icon}}"></i>
       </span>
       <div class="link-content">
-        <span class="title"> Website </span>
-        <span class="value"> www.vishalpandey.co.in </span>
-      </div>
-      <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
-    </div>
-
-    <div class="link">
-      <span class="img">
-        <i class="fa-brands fa-safari"></i>
-      </span>
-      <div class="link-content">
-        <span class="title">
-          Website
-        </span>
-        <span class="value">www.vishalpandey.co.in</span>
-      </div>
-      <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
-    </div>
-
-    <div class="link">
-      <span class="img">
-        <i class="fa-brands fa-safari"></i>
-      </span>
-      <div class="link-content">
-        <span class="title">
-          Website
-        </span>
-        <span class="value">www.vishalpandey.co.in</span>
+        <span class="title"> {{link.title}} </span>
+        <span class="value"> {{link.link}} </span>
       </div>
       <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
     </div>
