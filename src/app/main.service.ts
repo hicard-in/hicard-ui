@@ -143,4 +143,20 @@ export class MainService {
     })
   }
 
+  checkLoggedIn() {
+    let token = localStorage.getItem("token")
+    if(token) {
+      return true;
+    }
+    return false;
+  }
+
+  getUserName() : String | null {
+    let username = localStorage.getItem('username')
+    if(username) {
+      return String(username)
+    }
+    return null
+  }
+
 }

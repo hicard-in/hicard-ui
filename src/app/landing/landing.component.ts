@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MainService } from '../main.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private mainService: MainService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    if(this.mainService.checkLoggedIn() && this.mainService.getUserName()) {
+      let username = this.mainService.getUserName()
+      this.router.navigate([`/${username}`])
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
 }

@@ -33,6 +33,10 @@ const routes: Routes = [
     "path": ":id",
     component: UserComponent
   },
+  {
+    "path": "",
+    component: LandingComponent
+  }
 ];
 
 @NgModule({
