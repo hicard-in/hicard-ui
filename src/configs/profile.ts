@@ -31,10 +31,9 @@ export const defaultProfile = {
     "title": "",
     "work": "",
     "education": "",
-    "location": ""
+    "location": "",
+    "skill": '' // Comma separated list of skils
   },
-  "skill": [
-  ],
   "contact_info": {
     "website": [
     ],

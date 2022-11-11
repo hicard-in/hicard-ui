@@ -18,7 +18,7 @@
         <span class="education">{{profile.bio.education}}</span>
       </div>
       <div class="skills">
-        <span class="skill" *ngFor="let skill of profile.skill">{{skill}}</span>
+        <span class="skill" *ngFor="let skill of profile.bio.skill.split(',')">{{skill}}</span>
         <!-- <span class="skill">StartUp</span>
         <span class="skill">Coding</span> -->
       </div>

@@ -87,9 +87,9 @@ export class MainService {
       title: ['',  {updateOn: 'blur'}],
       work: ['',  {updateOn: 'blur'}],
       education: ['',  {updateOn: 'blur'}],
-      location: ['',  {updateOn: 'blur'}]
+      location: ['',  {updateOn: 'blur'}],
+      skill: ['',  {updateOn: 'blur'}]
     }),
-    skill: this.fb.array(['',  {updateOn: 'blur'}]),
     contact_info: this.fb.group({
       website: this.fb.array(this.getLinkFormControlList()),
       email: this.fb.array(this.getLinkFormControlList()),
