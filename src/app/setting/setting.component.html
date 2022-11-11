@@ -1,10 +1,10 @@
 <section class="content-setting" [formGroup]="profileFG">
-  <h1>Setup</h1>
+  <h1>Edit Profile</h1>
   <section class="header">
     <mat-slide-toggle style="opacity: 0;"></mat-slide-toggle>
-    <span class="link">
+    <span class="link" routerLink="/{{username}}">
       <i class="fa-solid fa-link"></i>
-      airtrik.com/vishalpandey
+      airtrik.com/{{username}}
     </span>
     
     <!-- <span class="islive"></span> -->

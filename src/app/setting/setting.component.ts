@@ -16,6 +16,7 @@ export class SettingComponent implements OnInit {
 
   profileFG:FormGroup;
   bioFG:FormGroup;
+  username:string = "";
 
   profile:any;
   user:any;
@@ -26,6 +27,7 @@ export class SettingComponent implements OnInit {
 
   async ngOnInit() {
     let username = String(localStorage.getItem('username'))
+    this.username = username;
     let userProfile = await this.mainService.getProfile(username)
     console.log(userProfile)
 

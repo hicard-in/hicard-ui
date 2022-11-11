@@ -1,10 +1,12 @@
 <app-loading *ngIf="!profile"></app-loading>
 <section class="content-user" *ngIf="profile">
-  
+  <header *ngIf="isLoggedIn">
+    <a routerLink="/setting">Edit</a>
+  </header>
   <div class="header-card">
     <div class="banner">
       <span class="profile-photo">
-        <img src="{{profile.photo}}" alt="">
+        <img src="{{profile.photo || defaultDp}}" alt="">
       </span>
     </div>
     <div class="profile-info">

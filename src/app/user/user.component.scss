@@ -8,6 +8,23 @@
   color: white;
 }
 
+header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  a{
+    font-size: 14px;
+    color: white;
+    &:hover{
+      color: lightgrey;
+    }
+  }
+}
+
 .header-card {
   width: 100%;
   background-color: #192734;
