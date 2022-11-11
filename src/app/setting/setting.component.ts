@@ -17,6 +17,7 @@ export class SettingComponent implements OnInit {
   profileFG:FormGroup;
   bioFG:FormGroup;
   username:string = "";
+  defaultDP:string = "/assets/default-profile.jpg"
 
   profile:any;
   user:any;

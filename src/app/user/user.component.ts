@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
   linksList:any = [];
   setting:any = settings;
   isLoggedIn:boolean = false;
-  defaultDp:string = "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg";
+  defaultDp:string = "/assets/default-profile.jpg";
 
   async ngOnInit() {
     let username = this.route.snapshot.params['id'];
