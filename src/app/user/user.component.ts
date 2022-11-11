@@ -42,8 +42,6 @@ export class UserComponent implements OnInit {
   }
 
   flattenList() {
-    // console.log(this.profile)
-    let allLink = {...this.profile.contact_info, ...this.profile.social_links, ...this.profile.payment, ...this.profile.productivity}
 
     let categories = ['contact_info', 'social_links', 'payment', 'productivity']
 
@@ -55,23 +53,10 @@ export class UserComponent implements OnInit {
             let linkObj = this.setting[category][linkType]
             linkObj['link'] = theLink
             this.linksList.push(linkObj)
-            console.log(linkObj)
           }
         })
-        // console.log(linkarr)
       })
-      // console.log(this.profile[category])
     })
-
-    // for (const link in allLink) {
-    //   console.log(link)
-    //   allLink[link].forEach((e: any) => {
-    //     this.linksList.push(e)
-    //     if(e) {
-    //       console.log(e)
-    //     }
-    //   });
-    // }
   }
 
 }
