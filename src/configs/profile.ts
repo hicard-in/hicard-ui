@@ -21,3 +21,62 @@ export const profileOrder = [
   "notion",
   "gdrive"
 ];
+
+
+export const defaultProfile = {
+  "name": "",
+  "photo": "",
+  "banner": "",
+  "bio": {
+    "title": "",
+    "work": "",
+    "education": "",
+    "location": ""
+  },
+  "skill": [
+  ],
+  "contact_info": {
+    "website": [
+    ],
+    "email": [
+    ],
+    "phone": [
+    ],
+    "whatsapp": [
+    ],
+    "discord": [
+    ],
+    "telegram": [
+    ]
+  },
+  "social_links": {
+    "linkedIn": [
+    ],
+    "instagram": [
+    ],
+    "twitter": [
+    ],
+    "facebook": [
+    ],
+    "youtube": [
+    ],
+    "snapchat": [
+    ]
+  },
+  "payment": {
+    "paypal": [
+    ],
+    "gpay": [
+    ],
+    "upi": [
+    ]
+  },
+  "productivity": {
+    "calendly": [
+    ],
+    "notion": [
+    ],
+    "gdrive": [
+    ]
+  }
+}

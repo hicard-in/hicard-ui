@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { settings } from 'src/configs/settings';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { defaultProfile } from 'src/configs/profile';
 
 
 @Injectable({
@@ -48,6 +49,9 @@ export class MainService {
   async getProfile(username:string) {
     if(!this.userProfile) {
       let res:any = await this.http.get(environment.apiUrl+"user/"+username).toPromise()
+      if(!res.profile?.[0]){
+        res.profile[0] = defaultProfile
+      }
       this.userProfile = res
       this.profileFG.patchValue(this.userProfile?.profile?.[0])
     }

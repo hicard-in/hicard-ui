@@ -31,10 +31,11 @@ export class UserComponent implements OnInit {
 
     if(!this.profile && !this.user) {
       this.router.navigate([`/login`])
+      return
     }
 
     if(this.user.isActivated === false) {
-      this.router.navigate([`/setup`])
+      this.router.navigate([`/setup`, {username: username}])
     }
 
     // console.log(this.user)

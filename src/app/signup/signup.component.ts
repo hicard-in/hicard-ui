@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from '../main.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   signupFG: FormGroup = this.fb.group({
@@ -24,6 +25,31 @@ export class SignupComponent implements OnInit {
   
   error:any = null;
   ngOnInit(): void {
+    let username = this.route.snapshot.paramMap.get('username')
+    if(!username) {
+      this.router.navigate(['/login'])
+      return
+    }
+    username = String(username)
+    let password = String(username)
+
+    this.mainService.login(username, password).subscribe((data:any) => {
+      if(data.err) {
+        this.error = "Card Invalid Contact 9717130893"
+      } else {
+        if(data.isActivated) {
+          this.error = null;
+          localStorage.setItem("token", data.key)
+          localStorage.setItem("username", String(username))
+          this.router.navigate([`/${username}`])
+        } else {
+          console.log("Reaching here")
+          localStorage.setItem("token", data.key)
+          localStorage.setItem("username", String(username))
+          // this.router.navigate([`/setup`])
+        }
+      }
+    })
   }
 
   signup() {
@@ -47,7 +73,9 @@ export class SignupComponent implements OnInit {
       if(data.err) {
         this.error = data.message
       } else {
-        this.router.navigate([`/${username}`])
+        localStorage.setItem("token", data.key)
+        localStorage.setItem("username", String(username))
+        this.router.navigate([`/setting`])
       }
     })
 
