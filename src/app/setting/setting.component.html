@@ -1,23 +1,23 @@
 <section class="content-setting" [formGroup]="profileFG">
   <h1>Setup</h1>
   <section class="header">
-    <mat-slide-toggle></mat-slide-toggle>
+    <mat-slide-toggle style="opacity: 0;"></mat-slide-toggle>
     <span class="link">
       <i class="fa-solid fa-link"></i>
       airtrik.com/vishalpandey
     </span>
     
-    <span class="islive"></span>
+    <!-- <span class="islive"></span> -->
   </section>
 
   <br>
 
   <div class="header-card">
     <div class="banner">
-      <input type="file" >
       <span class="profile-photo">
         <img src="/assets/profile.jpg" alt="">
         <span class="upload-icon">
+          <input type="file" class="theprofilefile">
           <i class="fa-solid fa-upload"></i>
         </span>
       </span>

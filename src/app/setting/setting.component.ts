@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MainService } from '../main.service';
 
 @Component({
@@ -20,9 +20,14 @@ export class SettingComponent implements OnInit {
   profile:any;
   user:any;
 
+  profilePhotoFG: FormGroup = new FormGroup({
+    photo: new FormControl('')
+  })
+
   async ngOnInit() {
     let username = String(localStorage.getItem('username'))
     let userProfile = await this.mainService.getProfile(username)
+    console.log(userProfile)
 
     this.profile = userProfile?.profile?.[0]
     this.user = userProfile?.user?.[0]
@@ -32,6 +37,10 @@ export class SettingComponent implements OnInit {
 
   saveProfile() {
     this.mainService.saveProfile()
+  }
+
+  uploadProfilePhoto(file:any) {
+
   }
 
 }
