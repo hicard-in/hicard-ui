@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { settings } from 'src/configs/settings';
-import { VCard } from "ngx-vcard";
+import { VCardFormatter, VCard } from "ngx-vcard";
 
 @Component({
   selector: 'app-user',
@@ -24,6 +24,9 @@ export class UserComponent implements OnInit {
   setting:any = settings;
   isLoggedIn:boolean = false;
   defaultDp:string = "/assets/default-profile.jpg";
+
+  profilePic:any = "";
+  public vCard: VCard = {}
 
   async ngOnInit() {
     let username = this.route.snapshot.params['id'];
@@ -47,9 +50,10 @@ export class UserComponent implements OnInit {
     if(this.user.isActivated === false) {
       this.router.navigate([`/setup`, {username: username}])
     }
-
     // console.log(this.user)
     this.flattenList()
+    this.profilePic = await this.toDataURL(this.profile.photo);
+    this.profilePic = ';ENCODING=b;type=JPEG:'+ this.profilePic.split(",")[1]
   }
 
   flattenList() {
@@ -75,7 +79,7 @@ export class UserComponent implements OnInit {
     this.mainService.followLink(linkType, theLink)
   }
 
-  public generateVCardOnTheFly = (): VCard => {
+  public generateVCardOnTheFly = () => {
     console.log(this.profile)
     let firstName = this.profile.name.split(" ")[0]
     let lastName = this.profile.name.split(" ")?.[1] ? this.profile.name.split(" ")?.[1] : ''
@@ -105,17 +109,46 @@ export class UserComponent implements OnInit {
     })
     
 
-    this.profile
-    // TODO: Generate the VCard before Download
-    return {
+    this.vCard =  {
       name: { firstNames: firstName, lastNames: lastName },
       email: emailList,
       telephone,
       title: this.profile.bio.title,
       logo: this.profile.photo,
+      photo: this.profilePic,
       organization: this.profile.bio.work,
       url
     };
+
+    let vCardString = VCardFormatter.getVCardAsString(this.vCard);
+    vCardString = vCardString.replace('PHOTO:', 'PHOTO')
+    this.downloacVCFCard(vCardString);
+  };
+
+  downloacVCFCard(vcfString:string) {
+    const a = document.createElement('a');
+    const blob = new Blob([vcfString]);
+    a.href = URL.createObjectURL(blob);
+    a.download = `${this.profile.name}.vcf`;
+    a.click();
+  }
+
+  async toDataURL(url:string) {
+    var res = await fetch(url);
+    var blob = await res.blob();
+
+    const result = await new Promise((resolve, reject) => {
+      var reader = new FileReader();
+      reader.addEventListener("load", function () {
+        resolve(reader.result);
+      }, false);
+
+      reader.onerror = () => {
+        return reject(this);
+      };
+      reader.readAsDataURL(blob);
+    })
+    return result
   };
 
 }
