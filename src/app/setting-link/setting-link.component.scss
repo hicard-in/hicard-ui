@@ -14,12 +14,13 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 15px 5px;
+  padding: 0px 10px;
+  // border: 1px solid white;
   .back-button{
-    font-size: 40px;
+    font-size: 25px;
   }
   .title{
-    font-size: 28px;
+    font-size: 18px;
     font-weight: bold;
   }
 }
@@ -56,7 +57,7 @@
       .title{
         width: 100%;
         display: block;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bolder;
         padding-left: 15px;
       }
@@ -66,6 +67,23 @@
         margin: 10px;
         border: none;
         border-radius: 6px;
+      }
+      .delete {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        &:hover{
+          border-color: red;
+          cursor: pointer;
+        }
+      }
+      .test{
+        cursor: pointer;
+        &:hover{
+          background-color: transparent;
+          color: white;
+          border: 2px solid white;
+        }
       }
     }
   }
@@ -92,5 +110,15 @@
   button{
     width: 100px;
     height: 40px;
+  }
+  .another{
+    border-radius: 5px;
+    border: none;
+    &:hover{
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      cursor: pointer;
+    }
   }
 }

@@ -41,7 +41,13 @@ export class SettingLinkComponent implements OnInit {
   }
 
   addAnother() {
-    this.theLimit++;
+    if(this.linkFG.at(this.theLimit - 1).value) {
+      this.theLimit++;
+    }
+  }
+
+  deleteLink(index:any) {
+    this.linkFG.at(index).setValue(null)
   }
 
 }
