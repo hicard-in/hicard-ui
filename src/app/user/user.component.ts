@@ -129,7 +129,7 @@ export class UserComponent implements OnInit {
     const a = document.createElement('a');
     const blob = new Blob([vcfString]);
     a.href = URL.createObjectURL(blob);
-    a.download = `${this.profile.name}.vcf`;
+    // a.download = `${this.profile.name}.vcf`;
     a.click();
   }
 
