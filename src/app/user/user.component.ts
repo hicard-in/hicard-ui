@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
     this.user = userProfile?.user?.[0]
     this.profile = userProfile?.profile?.[0]
 
-    if(!this.profile && !this.user) {
+    if(!this.profile || !this.user) {
       this.router.navigate([`/login`])
       return
     }
