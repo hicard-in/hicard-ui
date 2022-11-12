@@ -29,10 +29,10 @@
   </div>
 
   <div class="save-contact">
-    <button class="save-contact-button">
+    <button class="save-contact-button" vcdDownloadVCard [generateVCardFunction]="generateVCardOnTheFly">
       Save Contact
     </button>
-    <button class="download-contact-button">
+    <button class="download-contact-button" vcdDownloadVCard [generateVCardFunction]="generateVCardOnTheFly">
       <i class="fa-solid fa-arrow-down"></i>
     </button>
   </div>

@@ -15,6 +15,7 @@ import { SettingLinkComponent } from './setting-link/setting-link.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxVcardModule } from "ngx-vcard";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatInputModule,
+    NgxVcardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

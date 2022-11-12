@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { settings } from 'src/configs/settings';
+import { VCard } from "ngx-vcard";
 
 @Component({
   selector: 'app-user',
@@ -67,5 +68,48 @@ export class UserComponent implements OnInit {
   followLink(linkType:string, theLink:string) {
     this.mainService.followLink(linkType, theLink)
   }
+
+  public generateVCardOnTheFly = (): VCard => {
+    console.log(this.profile)
+    let firstName = this.profile.name.split(" ")[0]
+    let lastName = this.profile.name.split(" ")?.[1] ? this.profile.name.split(" ")?.[1] : ''
+
+    let emailList: string[] = [];
+    let telephone: string[] = [];
+    let url:string = "";
+
+    this.profile.contact_info.email.forEach((em:string | null) => {
+      if(em){
+        console.log(em)
+        emailList.push(em)
+      }
+    });
+
+    this.profile.contact_info.phone.forEach((em:string | null) => {
+      if(em){
+        console.log(em)
+        telephone.push(em)
+      }
+    });
+
+    this.profile.contact_info.website.forEach((em:string | null) => {
+      if(em && url != "") {
+        url = em
+      }
+    })
+    
+
+    this.profile
+    // TODO: Generate the VCard before Download
+    return {
+      name: { firstNames: firstName, lastNames: lastName },
+      email: emailList,
+      telephone,
+      title: this.profile.bio.title,
+      logo: this.profile.photo,
+      organization: this.profile.bio.work,
+      url
+    };
+  };
 
 }
