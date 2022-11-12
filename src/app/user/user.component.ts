@@ -127,9 +127,11 @@ export class UserComponent implements OnInit {
 
   downloacVCFCard(vcfString:string) {
     const a = document.createElement('a');
-    const blob = new Blob([vcfString]);
+    const blob = new Blob([vcfString], {
+      type: "text/vcard",
+    });
     a.href = URL.createObjectURL(blob);
-    // a.download = `${this.profile.name}.vcf`;
+    a.download = `${this.profile.name}.vcf`;
     a.click();
   }
 
