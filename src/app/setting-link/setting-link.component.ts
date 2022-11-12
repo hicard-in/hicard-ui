@@ -50,4 +50,9 @@ export class SettingLinkComponent implements OnInit {
     this.linkFG.at(index).setValue(null)
   }
 
+  followLink(index:any) {
+    let theLink = this.linkFG.at(index).value
+    this.mainService.followLink(this.linkType, theLink)
+  }
+
 }

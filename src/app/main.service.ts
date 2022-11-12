@@ -4,6 +4,7 @@ import { settings } from 'src/configs/settings';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { defaultProfile } from 'src/configs/profile';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Injectable({
@@ -21,6 +22,8 @@ export class MainService {
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
+    private route:ActivatedRoute,
+    private router: Router
   ) {
   }
 
@@ -184,6 +187,65 @@ export class MainService {
         console.log(data)
         this.isUploadingPhoto = false
       })
+    }
+  }
+
+  followLink(linkType:string, theLink:string) {
+
+    if(!theLink){
+      return
+    }
+    
+    theLink = theLink.trim()
+    switch (linkType) {
+      case 'email':
+        if (!/^mailto?:/.test(theLink)) {
+          theLink = 'mailto:' + theLink
+        }
+        window.open(theLink, "_blank");
+        break
+
+      case 'phone':
+        if (/^\d{10}$/.test(theLink)) {
+          theLink = 'tel:+91' + theLink
+        } else if (/^\d{12}$/.test(theLink)) {
+          theLink = 'tel:+' + theLink
+        } else {
+          break
+        }
+        
+        window.open(theLink, "_blank");
+        break
+      
+      case 'whatsapp':
+        if (/^\d{10}$/.test(theLink)) {
+          theLink = 'https://wa.me/91' + theLink + '?text=Hi'
+        } else if (/^\d{12}$/.test(theLink)) {
+          theLink = 'https://wa.me/' + theLink + '?text=Hi'
+        } else {
+          break
+        }
+        
+        window.open(theLink, "_blank");
+        break
+      
+      case 'upi':
+      case 'gpay':
+        if (/[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}/.test(theLink)) {
+          theLink = 'upi://pay?pa=' + theLink + `&pn=abc`
+        } else {
+          break
+        }
+        
+        window.open(theLink, "_blank");
+        break
+        
+      default:
+        if (!/^http[s]?:\/\//.test(theLink)) {
+          theLink = 'http://' + theLink
+        }
+        window.open(theLink, "_blank");
+        break;
     }
   }
 
