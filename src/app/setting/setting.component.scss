@@ -45,12 +45,22 @@
     position: relative;
     .profile-photo{
       position: absolute;
-      bottom: -10px;
-      left: 15px;
-      img{
+      bottom: -20px;
+      left: 10px;
+      .figure{
         width: 100px;
         height: 100px;
+        border: 1px solid white;
+        overflow: hidden;
         border-radius: 50%;
+        position: relative;
+        left: 0;
+        top: 0;
+        background-color: black;
+        background-image: var(--bg-image);
+        background-position: center;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
       }
       .upload-icon{
         position: absolute;

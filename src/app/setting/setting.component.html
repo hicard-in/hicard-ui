@@ -15,9 +15,10 @@
   <div class="header-card">
     <div class="banner">
       <span class="profile-photo">
-        <img src="{{this.profileFG.value.photo || defaultDP}}" alt="">
+        <div class="figure" style="--bg-image: url({{mainService.isUploadingPhoto ? '/assets/loading.gif' :this.profileFG.value.photo || defaultDP}})">
+        </div>
         <span class="upload-icon">
-          <input type="file" class="theprofilefile">
+          <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event)">
           <i class="fa-solid fa-upload"></i>
         </span>
       </span>

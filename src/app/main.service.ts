@@ -16,6 +16,7 @@ export class MainService {
   userProfile:any;
   profileValues:any;
   isSubscribing:boolean = false;
+  isUploadingPhoto:boolean = false;
   
   constructor(
     private http: HttpClient,
@@ -161,6 +162,29 @@ export class MainService {
       return String(username)
     }
     return null
+  }
+
+  uploadProfilePhoto(event: Event) {
+    this.isUploadingPhoto = true;
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      let token = String(localStorage.getItem('token'))
+      let file = fileList[0]
+      var fd = new FormData();
+      fd.append('file', file);
+      this.http.put(environment.apiUrl+"profile/updatephoto", fd, {
+          headers: {
+            'api-token': token
+          }
+      }).subscribe(async (data)=>{
+        this.userProfile = null
+        let username = String(localStorage.getItem('username'))
+        await this.getProfile(username)
+        console.log(data)
+        this.isUploadingPhoto = false
+      })
+    }
   }
 
 }

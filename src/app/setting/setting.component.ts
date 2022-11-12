@@ -9,7 +9,8 @@ import { MainService } from '../main.service';
 })
 export class SettingComponent implements OnInit {
 
-  constructor(private mainService: MainService) {
+  constructor(
+    public mainService: MainService) {
     this.profileFG = this.mainService.profileFG
     this.bioFG = this.profileFG.get('bio') as FormGroup
   }
@@ -22,9 +23,6 @@ export class SettingComponent implements OnInit {
   profile:any;
   user:any;
 
-  profilePhotoFG: FormGroup = new FormGroup({
-    photo: new FormControl('')
-  })
 
   async ngOnInit() {
     let username = String(localStorage.getItem('username'))
@@ -42,8 +40,8 @@ export class SettingComponent implements OnInit {
     this.mainService.saveProfile()
   }
 
-  uploadProfilePhoto(file:any) {
-
+  uploadProfilePhoto(event:Event) {
+    this.mainService.uploadProfilePhoto(event)
   }
 
 }

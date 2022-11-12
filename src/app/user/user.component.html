@@ -6,7 +6,8 @@
   <div class="header-card">
     <div class="banner">
       <span class="profile-photo">
-        <img src="{{profile.photo || defaultDp}}" alt="">
+        <div class="figure" style="--bg-image: url({{profile.photo || defaultDp}})">
+        </div>
       </span>
     </div>
     <div class="profile-info">
