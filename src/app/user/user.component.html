@@ -38,7 +38,7 @@
   </div>
 
   <div class="links">
-    <div class="link" *ngFor="let link of linksList">
+    <div class="link" *ngFor="let link of linksList" (click)="followLink(link.linkType, link.link)">
       <span class="img">
         <i class="{{link.icon}}"></i>
       </span>

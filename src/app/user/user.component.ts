@@ -56,11 +56,16 @@ export class UserComponent implements OnInit {
           if(theLink) {
             let linkObj = this.setting[category][linkType]
             linkObj['link'] = theLink
+            linkObj['linkType'] = linkType
             this.linksList.push(linkObj)
           }
         })
       })
     })
+  }
+
+  followLink(linkType:string, theLink:string) {
+    this.mainService.followLink(linkType, theLink)
   }
 
 }
