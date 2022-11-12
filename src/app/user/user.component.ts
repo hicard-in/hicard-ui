@@ -29,6 +29,12 @@ export class UserComponent implements OnInit {
     let username = this.route.snapshot.params['id'];
     let userProfile = await this.mainService.getProfile(username);
 
+    if(userProfile.err) {
+      this.router.navigate([`/${userProfile.username}`])
+      this.ngOnInit()
+      return
+    }
+
     this.isLoggedIn = this.mainService.checkLoggedIn();
     this.user = userProfile?.user?.[0]
     this.profile = userProfile?.profile?.[0]

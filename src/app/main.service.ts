@@ -53,6 +53,10 @@ export class MainService {
   async getProfile(username:string) {
     if(!this.userProfile) {
       let res:any = await this.http.get(environment.apiUrl+"user/"+username).toPromise()
+      if(res.err) {
+        return res
+      }
+      
       if(!res.profile?.[0]){
         res.profile[0] = defaultProfile
       }
