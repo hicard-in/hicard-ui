@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://api.airtrik.com/"
+  apiUrl: "https://api.hicard.in/"
 };
