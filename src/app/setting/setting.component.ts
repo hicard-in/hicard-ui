@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MainService } from '../main.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-setting',
@@ -10,7 +11,9 @@ import { MainService } from '../main.service';
 export class SettingComponent implements OnInit {
 
   constructor(
-    public mainService: MainService) {
+    public mainService: MainService,
+    private titleService: Title  
+  ) {
     this.profileFG = this.mainService.profileFG
     this.bioFG = this.profileFG.get('bio') as FormGroup
   }
@@ -34,6 +37,7 @@ export class SettingComponent implements OnInit {
     this.profile = userProfile?.profile?.[0]
     this.user = userProfile?.user?.[0]
 
+    this.titleService.setTitle(this.profile.name + ' - Settings')
     // console.log(this.profileFG)
   }
 

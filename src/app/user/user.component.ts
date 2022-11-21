@@ -3,6 +3,7 @@ import { MainService } from '../main.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { settings } from 'src/configs/settings';
 import { VCardFormatter, VCard } from "ngx-vcard";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-user',
@@ -14,7 +15,8 @@ export class UserComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private route:ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   profile:any = null
@@ -54,6 +56,9 @@ export class UserComponent implements OnInit {
     this.flattenList()
     this.profilePic = await this.toDataURL(this.profile.photo);
     this.profilePic = ';ENCODING=b;type=JPEG:'+ this.profilePic.split(",")[1]
+
+    this.titleService.setTitle(this.profile.name)
+
   }
 
   flattenList() {
