@@ -30,8 +30,12 @@ export class UserComponent implements OnInit {
   profilePic:any = "";
   public vCard: VCard = {}
 
+  showEdit:boolean = false;
+
   async ngOnInit() {
     let username = this.route.snapshot.params['id'];
+    let localStorageUsername = this.mainService.getUserName();
+    this.showEdit = username == localStorageUsername;
     let userProfile = await this.mainService.getProfile(username);
 
     if(userProfile.err) {

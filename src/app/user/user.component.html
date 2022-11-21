@@ -1,6 +1,6 @@
 <app-loading *ngIf="!profile"></app-loading>
 <section class="content-user" *ngIf="profile">
-  <header *ngIf="isLoggedIn">
+  <header *ngIf="isLoggedIn && showEdit">
     <a routerLink="/setting">Edit</a>
   </header>
   <div class="header-card">
