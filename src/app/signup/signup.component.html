@@ -5,7 +5,7 @@
     </div>
     <mat-form-field class="input-field" appearance="outline">
       <mat-label class="thelabel">Username</mat-label>
-      <input type="text" matInput formControlName="username">
+      <input type="text" matInput formControlName="username" (keypress)="alphaNumeric($event)">
     </mat-form-field>
     <mat-form-field class="input-field" appearance="outline">
       <mat-label class="thelabel">Password</mat-label>

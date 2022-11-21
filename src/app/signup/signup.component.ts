@@ -52,6 +52,14 @@ export class SignupComponent implements OnInit {
     })
   }
 
+  alphaNumeric(event:any): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode >= 48 && charCode <= 57) || (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) ) {
+      return true;
+    }
+    return false;
+  }
+
   signup() {
 
     if(!this.signupFG.valid) {
