@@ -27,6 +27,7 @@ export class SettingComponent implements OnInit {
   async ngOnInit() {
     let username = String(localStorage.getItem('username'))
     this.username = username;
+    this.mainService.userProfile = null;
     let userProfile = await this.mainService.getProfile(username)
     console.log(userProfile)
 
