@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { defaultProfile } from 'src/configs/profile';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 
 @Injectable({
@@ -66,7 +67,10 @@ export class MainService {
     // console.log(this.userProfile?.profile?.[0])
 
     if(!this.isSubscribing) {
-      this.profileFG.valueChanges.subscribe((data)=>{
+      this.profileFG.valueChanges
+      .pipe(debounceTime(1500))
+      .pipe(distinctUntilChanged())
+      .subscribe((data)=>{
         this.saveProfile();
       })
       this.isSubscribing = true
@@ -78,25 +82,25 @@ export class MainService {
   
   getLinkFormControlList() {
     return [
-      new FormControl(null, {updateOn: 'blur'}),
-      new FormControl(null, {updateOn: 'blur'}),
-      new FormControl(null, {updateOn: 'blur'}),
-      new FormControl(null, {updateOn: 'blur'}),
-      new FormControl(null, {updateOn: 'blur'})
+      new FormControl(null),
+      new FormControl(null),
+      new FormControl(null),
+      new FormControl(null),
+      new FormControl(null)
     ]
 
   }
 
   profileFG: FormGroup = this.fb.group({
-    name: ['',  {updateOn: 'blur'}],
-    photo: ['',  {updateOn: 'blur'}],
-    banner: ['',  {updateOn: 'blur'}],
+    name: [''],
+    photo: [''],
+    banner: [''],
     bio: this.fb.group({
-      title: ['',  {updateOn: 'blur'}],
-      work: ['',  {updateOn: 'blur'}],
-      education: ['',  {updateOn: 'blur'}],
-      location: ['',  {updateOn: 'blur'}],
-      skill: ['',  {updateOn: 'blur'}]
+      title: [''],
+      work: [''],
+      education: [''],
+      location: [''],
+      skill: ['']
     }),
     contact_info: this.fb.group({
       website: this.fb.array(this.getLinkFormControlList()),
