@@ -19,6 +19,7 @@ export class MainService {
   profileValues:any;
   isSubscribing:boolean = false;
   isUploadingPhoto:boolean = false;
+  isSavingData:boolean = false;
   
   constructor(
     private http: HttpClient,
@@ -71,6 +72,7 @@ export class MainService {
       .pipe(debounceTime(1500))
       .pipe(distinctUntilChanged())
       .subscribe((data)=>{
+        this.isSavingData = true;
         this.saveProfile();
       })
       this.isSubscribing = true
@@ -142,7 +144,7 @@ export class MainService {
 
   saveProfile() {
     if(JSON.stringify(this.profileFG.value) === JSON.stringify(this.profileValues)) {
-
+      this.isSavingData = false;
     } else {
       this.updateProfile(this.profileFG.value)
     }
@@ -156,6 +158,7 @@ export class MainService {
       }
     }).subscribe((data)=> {
       console.log(data)
+      this.isSavingData = false;
     })
   }
 

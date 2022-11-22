@@ -11,6 +11,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SettingLinkComponent } from './setting-link/setting-link.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,6 +38,8 @@ import { NgxVcardModule } from "ngx-vcard";
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     NgxVcardModule
   ],
   providers: [],
