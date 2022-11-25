@@ -63,6 +63,15 @@
     background: linear-gradient(#2b2a2a, rgba(0,0,0,0));
     position: absolute;
     border-radius: 10px;
+    &:hover{
+      box-shadow: 0 0 11px rgba(240,240,240,.2);
+    }
+  }
+
+  transition: 600ms;
+  &:hover{
+    box-shadow: 0 0 11px rgba(240,240,240,.2);
+    cursor: pointer;
   }
 }
 
