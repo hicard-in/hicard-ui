@@ -6,6 +6,7 @@ import { SettingComponent } from './setting/setting.component';
 import { LandingComponent } from './landing/landing.component';
 import { SettingLinkComponent } from './setting-link/setting-link.component';
 import { SignupComponent } from './signup/signup.component';
+import { ShopComponent } from './shop/shop.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     "path": "setting",
     component: SettingComponent
+  },
+  {
+    "path": "shop",
+    component: ShopComponent
   },
   {
     "path": "setting/:category/:id",

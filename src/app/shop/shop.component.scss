@@ -1,0 +1,109 @@
+.content-shop{
+  max-width: 500px;
+  min-height: 100vh;
+  // border: 1px solid blue;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  color: white;
+}
+.title{
+  h1{
+    font-size: 25px;
+    text-align: center;
+  }
+}
+.hero{
+  // border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card{
+  width: 400px;
+  height: 240px;
+  background-color: #2b2a2a;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.card-back{
+  background-image: url('/assets/qr.png');
+  background-size: 35%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card-front{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -150px;
+  position: relative;
+  .name{
+    font-family: More Sugar;
+    font-size: 140px;
+    margin-top: 20px;
+  }
+  .name-custom{
+    font-size: 40px;
+    font-family: More Sugar;
+  }
+  border-top: 0.1px solid white;
+
+  &:after {
+    content: "";
+    bottom: -70px;
+    left: 0px;
+    width: 400px;
+    height: 60px;
+    background-color: #2b2a2a;
+    background: linear-gradient(#2b2a2a, rgba(0,0,0,0));
+    position: absolute;
+    border-radius: 10px;
+  }
+}
+
+.order{
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  .input-field {
+    width: 100%;
+    margin-bottom: -20px;
+  }
+  .qty{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .quantity{
+    width: 40%;
+    text-align: center;
+  }
+  .cost{
+    font-size: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+  .order-button{
+    width: 100%;
+    padding: 15px;
+    background-color: #3b3c3f;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bolder;
+    outline: none;
+  }
+}

@@ -18,6 +18,10 @@ import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxVcardModule } from "ngx-vcard";
+import { ShopComponent } from './shop/shop.component';
+import { MatButtonModule } from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import { NgxVcardModule } from "ngx-vcard";
     LandingComponent,
     LoadingComponent,
     SettingLinkComponent,
-    SignupComponent
+    SignupComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,9 @@ import { NgxVcardModule } from "ngx-vcard";
     MatInputModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    NgxVcardModule
+    NgxVcardModule,
+    MatButtonToggleModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
