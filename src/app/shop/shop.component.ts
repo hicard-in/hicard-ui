@@ -66,7 +66,8 @@ export class ShopComponent implements OnInit {
       My Shipping details are below %0a
       Phone : ${order.phone} %0a
       Email : ${order.email} %0a
-      Address : ${order.pincode} %0a
+      Address : ${order.address} %0a
+      Pincode : ${order.pincode} %0a
     `
 
     console.log(textToSend)
