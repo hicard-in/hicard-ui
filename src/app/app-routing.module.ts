@@ -7,6 +7,11 @@ import { LandingComponent } from './landing/landing.component';
 import { SettingLinkComponent } from './setting-link/setting-link.component';
 import { SignupComponent } from './signup/signup.component';
 import { ShopComponent } from './shop/shop.component';
+import { AboutUsComponent } from './brand/about-us/about-us.component';
+import { ContactUsComponent } from './brand/contact-us/contact-us.component';
+import { PrivacyPolicyComponent } from './brand/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './brand/terms-and-conditions/terms-and-conditions.component';
+import { CancellationAndRefundPoliciesComponent } from './brand/cancellation-and-refund-policies/cancellation-and-refund-policies.component';
 
 
 const routes: Routes = [
@@ -29,6 +34,26 @@ const routes: Routes = [
   {
     "path": "shop",
     component: ShopComponent
+  },
+  {
+    "path": "brand/about-us",
+    component: AboutUsComponent
+  },
+  {
+    "path": "brand/contact-us",
+    component: ContactUsComponent
+  },
+  {
+    "path": "brand/privacy-policy",
+    component: PrivacyPolicyComponent
+  },
+  {
+    "path": "brand/terms-and-conditions",
+    component: TermsAndConditionsComponent
+  },
+  {
+    "path": "brand/cancellation-and-refund-policies",
+    component: CancellationAndRefundPoliciesComponent
   },
   {
     "path": "setting/:category/:id",

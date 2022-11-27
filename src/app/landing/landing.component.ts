@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
       let username = this.mainService.getUserName()
       this.router.navigate([`/${username}`])
     } else {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/shop'])
     }
   }
 

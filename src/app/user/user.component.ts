@@ -33,6 +33,7 @@ export class UserComponent implements OnInit {
   showEdit:boolean = false;
 
   async ngOnInit() {
+    console.log("Reaching here")
     let username = this.route.snapshot.params['id'];
     let localStorageUsername = this.mainService.getUserName();
     this.showEdit = username == localStorageUsername;
@@ -49,7 +50,7 @@ export class UserComponent implements OnInit {
     this.profile = userProfile?.profile?.[0]
 
     if(!this.profile || !this.user) {
-      this.router.navigate([`/login`])
+      this.router.navigate([`/shop`])
       return
     }
 
