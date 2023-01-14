@@ -61,7 +61,7 @@ export class ShopComponent implements OnInit {
     let textToSend = `
       %0a
       Hey My name is ${order.name} %0a
-      Please book my order of ${order.type == 'std' ? 'Standard Cobra Card' : `Customized Cobra Card with text ${order.cardText}`} %0a
+      Please book my order of ${order.type == 'std' ? 'Standard Hi Card' : `Customized Hi Card with text ${order.cardText}`} %0a
       My Order quantity is ${order.quantity} %0a
       My Shipping details are below %0a
       Phone : ${order.phone} %0a

@@ -1,15 +1,15 @@
 <section class="content-shop">
   <section class="title">
-    <h1>Get your Cobra Card</h1>
+    <h1>Get your hi Card</h1>
   </section>
 
   <section class="hero">
     <div class="card card-back"></div>
     <div class="card card-front">
       <span class="name" *ngIf="shopFG.get('type')?.value === 'std'">
-        <img src="/assets/logo-white.png" width="100">
+        <img src="/assets/logo-square.png" width="100">
       </span>
-      <span class="name-custom" *ngIf="shopFG.get('type')?.value === 'cus'">{{shopFG.get('cardText')?.value || 'Cobra'}}</span>
+      <span class="name-custom" *ngIf="shopFG.get('type')?.value === 'cus'">{{shopFG.get('cardText')?.value || 'hi'}}</span>
     </div>
     <div class="card-shadow"></div>
   </section>
