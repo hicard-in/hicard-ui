@@ -21,6 +21,7 @@ export class SettingLinkComponent implements OnInit {
     this.profileFG = this.mainService.profileFG
     this.sectionFG = this.profileFG.get(this.category) as FormGroup
     this.linkFG = this.profileFG.get(this.category+'.'+this.linkType) as FormArray
+    console.log(this.linkFG)
     this.setting = settings
     this.theLimit = 1
   }
@@ -47,11 +48,14 @@ export class SettingLinkComponent implements OnInit {
   }
 
   deleteLink(index:any) {
-    this.linkFG.at(index).setValue(null)
+    this.linkFG.at(index).setValue({
+      id: null,
+      value: ''
+    })
   }
 
   followLink(index:any) {
-    let theLink = this.linkFG.at(index).value
+    let theLink = this.linkFG.at(index).value.value
     this.mainService.followLink(this.linkType, theLink)
   }
 

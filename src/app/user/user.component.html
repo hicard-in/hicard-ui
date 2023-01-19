@@ -4,9 +4,9 @@
     <a routerLink="/setting">Edit</a>
   </header>
   <div class="header-card">
-    <div class="banner">
+    <div class="banner" style="--bg-image: url({{profile?.banner?.url}})">
       <span class="profile-photo">
-        <div class="figure" style="--bg-image: url({{profile.photo || defaultDp}})">
+        <div class="figure" style="--bg-image: url({{profile?.photo?.url ? profile?.photo?.url : defaultDp}})">
         </div>
       </span>
     </div>
@@ -14,14 +14,14 @@
       <span class="name">
         {{profile.name}}
       </span>
-      <span class="designation">{{profile.bio.title}}</span>
+      <span class="designation">{{profile?.bio?.title}}</span>
       <div class="company-location-education">
-        <span class="company">{{profile.bio.work}}</span>
-        <span class="location">{{profile.bio.location}}</span>
-        <span class="education">{{profile.bio.education}}</span>
+        <span class="company">{{profile?.bio?.work}}</span>
+        <span class="location">{{profile?.bio?.location}}</span>
+        <span class="education">{{profile?.bio?.education}}</span>
       </div>
       <div class="skills">
-        <span class="skill" *ngFor="let skill of profile.bio.skill.split(',')">{{skill}}</span>
+        <span class="skill" *ngFor="let skill of profile?.bio?.skill?.split(',')">{{skill}}</span>
         <!-- <span class="skill">StartUp</span>
         <span class="skill">Coding</span> -->
       </div>

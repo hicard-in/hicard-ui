@@ -30,17 +30,22 @@ export class LoginComponent implements OnInit {
     let username = this.loginFG.value.username
     let password = this.loginFG.value.password
     this.mainService.login(username, password).subscribe((data:any) => {
+      console.log(data)
       if(data.err) {
         this.error = data.message
       } else {
-        if(data.isActivated) {
+        if(data.user.isActivated) {
           this.error = null;
-          localStorage.setItem("token", data.key)
+          localStorage.setItem("token", data.jwt)
           localStorage.setItem("username", username)
           this.router.navigate([`/${username}`])
         } else {
           this.router.navigate([`/setup`])
         }
+      }
+    }, (err)=>{
+      if(err.error.error.status === 400) {
+        this.error = err.error.error.message.replace("identifier", "username")
       }
     })
 

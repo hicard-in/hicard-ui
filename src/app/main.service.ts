@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { defaultProfile } from 'src/configs/profile';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, lastValueFrom } from 'rxjs';
 
 
 @Injectable({
@@ -30,8 +30,8 @@ export class MainService {
   }
 
   login(username:string, password:string) {
-    return this.http.post(environment.apiUrl+"user/login", {
-      username,
+    return this.http.post(environment.apiUrl+"api/auth/local/", {
+      identifier: username,
       password
     }, {
       headers: {
@@ -42,28 +42,30 @@ export class MainService {
 
   signup(username:string, password:string) {
     let token = String(localStorage.getItem("token"))
-    return this.http.put(environment.apiUrl+"user/signup", {
+    return this.http.put(environment.apiUrl+"api/user/me", {
       username,
-      password
+      password,
+      isActivated: true
     }, {
       headers: {
-        'api-token': token
+        'Authorization': `Bearer ${token}`
       }
     })
   }
 
   async getProfile(username:string) {
     if(!this.userProfile) {
-      let res:any = await this.http.get(environment.apiUrl+"user/"+username).toPromise()
+      let res:any = this.http.get(`${environment.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`)
+      res = await lastValueFrom(res)
       if(res.err) {
         return res
       }
       
-      if(!res.profile?.[0]){
-        res.profile[0] = defaultProfile
+      if(!res[0]){
+        res[0] = defaultProfile
       }
       this.userProfile = res
-      this.profileFG.patchValue(this.userProfile?.profile?.[0])
+      this.profileFG.patchValue(this.userProfile?.[0])
     }
     // console.log(this.userProfile?.profile?.[0])
 
@@ -84,11 +86,26 @@ export class MainService {
   
   getLinkFormControlList() {
     return [
-      new FormControl(null),
-      new FormControl(null),
-      new FormControl(null),
-      new FormControl(null),
-      new FormControl(null)
+      this.fb.group({
+        id: [null],
+        value: ['']
+      }),
+      this.fb.group({
+        id: [null],
+        value: ['']
+      }),
+      this.fb.group({
+        id: [null],
+        value: ['']
+      }),
+      this.fb.group({
+        id: [null],
+        value: ['']
+      }),
+      this.fb.group({
+        id: [null],
+        value: ['']
+      })
     ]
 
   }
@@ -146,20 +163,39 @@ export class MainService {
     if(JSON.stringify(this.profileFG.value) === JSON.stringify(this.profileValues)) {
       this.isSavingData = false;
     } else {
-      this.updateProfile(this.profileFG.value)
+      let toSaveObj = this.sanitizeObj(this.profileFG.value)
+      this.updateProfile(toSaveObj)
     }
   }
 
   async updateProfile(profileValue:any) {
     let token = String(localStorage.getItem('token'))
-    this.http.put(environment.apiUrl+"profile", profileValue, {
+    this.http.put(environment.apiUrl+"api/user/me", profileValue, {
       headers: {
-        'api-token': token
+        'Authorization': `Bearer ${token}`
       }
     }).subscribe((data)=> {
       console.log(data)
       this.isSavingData = false;
     })
+  }
+
+  sanitizeObj(profile:any) {
+    let categories = ['contact_info', 'social_links', 'payment', 'productivity']
+
+    categories.forEach((category) =>{
+      if(!profile[category]) {
+        return
+      }
+      Object.keys(profile[category]).filter(e => e!='id').forEach((linkType:any)=>{
+        let linkarr = profile[category][linkType]
+        profile[category][linkType] = linkarr.filter((el:any) => {
+          return el.value != ''
+        })
+      })
+    })
+
+    return profile
   }
 
   checkLoggedIn() {
@@ -178,7 +214,7 @@ export class MainService {
     return null
   }
 
-  uploadProfilePhoto(event: Event) {
+  uploadProfilePhoto(event: Event, userId:any, field:any='photo') {
     this.isUploadingPhoto = true;
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
@@ -186,10 +222,13 @@ export class MainService {
       let token = String(localStorage.getItem('token'))
       let file = fileList[0]
       var fd = new FormData();
-      fd.append('file', file);
-      this.http.put(environment.apiUrl+"profile/updatephoto", fd, {
+      fd.append('files', file);
+      fd.append('refId', userId);
+      fd.append('ref', 'plugin::users-permissions.user');
+      fd.append('field', field);
+      this.http.post(environment.apiUrl+"api/upload", fd, {
           headers: {
-            'api-token': token
+            'Authorization': `Bearer ${token}`
           }
       }).subscribe(async (data)=>{
         this.userProfile = null

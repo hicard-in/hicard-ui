@@ -12,14 +12,18 @@
 
 
   <div class="header-card">
-    <div class="banner">
+    <div class="banner" style="--bg-image: url({{this.profileFG.value?.banner?.url}})">
       <span class="profile-photo">
-        <div class="figure" style="--bg-image: url({{mainService.isUploadingPhoto ? '/assets/loading.gif' :this.profileFG.value.photo || defaultDP}})">
+        <div class="figure" style="--bg-image: url({{mainService.isUploadingPhoto ? '/assets/loading.gif' : this.profileFG.value?.photo?.url ? this.profileFG.value?.photo?.url : defaultDP}})">
         </div>
         <span class="upload-icon">
-          <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event)">
+          <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event, 'photo')">
           <i class="fa-solid fa-upload"></i>
         </span>
+      </span>
+      <span class="upload-icon banner-icon">
+        <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event, 'banner')">
+        <i class="fa-solid fa-upload"></i>
       </span>
     </div>
   </div>
@@ -202,7 +206,7 @@
       <span class="title">Notion</span>
     </div>
     
-    <div class="item" routerLink="/setting/productivity/grive">
+    <div class="item" routerLink="/setting/productivity/gdrive">
       <span class="filled"></span>
       <span class="icon"><i class="fa-brands fa-google-drive"></i></span>
       <span class="title">GDrive</span>

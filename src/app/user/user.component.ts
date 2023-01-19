@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { settings } from 'src/configs/settings';
 import { VCardFormatter, VCard } from "ngx-vcard";
 import { Title } from "@angular/platform-browser";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -25,10 +26,11 @@ export class UserComponent implements OnInit {
   linksList:any = [];
   setting:any = settings;
   isLoggedIn:boolean = false;
-  defaultDp:string = "/assets/default-profile.jpg";
+  defaultDp:string = "https://api.dicebear.com/5.x/bottts/svg?seed=";
 
   profilePic:any = "";
   public vCard: VCard = {}
+  environment = environment;
 
   showEdit:boolean = false;
 
@@ -37,30 +39,37 @@ export class UserComponent implements OnInit {
     let username = this.route.snapshot.params['id'];
     let localStorageUsername = this.mainService.getUserName();
     this.showEdit = username == localStorageUsername;
+    this.mainService.userProfile = null;
     let userProfile = await this.mainService.getProfile(username);
 
-    if(userProfile.err) {
-      this.router.navigate([`/${userProfile.username}`])
+    this.isLoggedIn = this.mainService.checkLoggedIn();
+    this.user = userProfile?.[0]
+    this.profile = userProfile?.[0]
+    
+    this.defaultDp += this.profile?.userId;
+
+    if(this.profile.username && this.profile.username != username) {
+      this.router.navigate([`/${this.profile.username}`])
       this.ngOnInit()
       return
     }
-
-    this.isLoggedIn = this.mainService.checkLoggedIn();
-    this.user = userProfile?.user?.[0]
-    this.profile = userProfile?.profile?.[0]
-
-    if(!this.profile || !this.user) {
+    
+    if(!this.profile.userId) {
       this.router.navigate([`/shop`])
       return
     }
 
-    if(this.user.isActivated === false) {
+    console.log(this.user, "VIAHAL")
+
+    if(this.user.isActivated === false || this.user.isActivated === null) {
       this.router.navigate([`/setup`, {username: username}])
     }
     // console.log(this.user)
     this.flattenList()
-    this.profilePic = await this.toDataURL(this.profile.photo);
-    this.profilePic = ';ENCODING=b;type=JPEG:'+ this.profilePic.split(",")[1]
+    if(this.profile?.photo?.url) {
+      this.profilePic = await this.toDataURL(this.profile.photo.url);
+      this.profilePic = ';ENCODING=b;type=JPEG:'+ this.profilePic.split(",")[1]
+    }
 
     this.titleService.setTitle(this.profile.name)
 
@@ -71,12 +80,15 @@ export class UserComponent implements OnInit {
     let categories = ['contact_info', 'social_links', 'payment', 'productivity']
 
     categories.forEach((category) =>{
-      Object.keys(this.profile[category]).forEach((linkType:any)=>{
+      if(!this.profile[category]) {
+        return
+      }
+      Object.keys(this.profile[category]).filter(e => e!='id').forEach((linkType:any)=>{
         let linkarr = this.profile[category][linkType]
         linkarr.forEach((theLink:any)=>{
           if(theLink) {
             let linkObj = this.setting[category][linkType]
-            linkObj['link'] = theLink
+            linkObj['link'] = theLink?.value
             linkObj['linkType'] = linkType
             this.linksList.push(linkObj)
           }
@@ -98,21 +110,21 @@ export class UserComponent implements OnInit {
     let telephone: string[] = [];
     let url:string = "";
 
-    this.profile.contact_info.email.forEach((em:string | null) => {
+    this.profile?.contact_info?.email?.forEach((em:string | null) => {
       if(em){
         console.log(em)
         emailList.push(em)
       }
     });
 
-    this.profile.contact_info.phone.forEach((em:string | null) => {
+    this.profile?.contact_info?.phone?.forEach((em:string | null) => {
       if(em){
         console.log(em)
         telephone.push(em)
       }
     });
 
-    this.profile.contact_info.website.forEach((em:string | null) => {
+    this.profile?.contact_info?.website?.forEach((em:string | null) => {
       if(em && url != "") {
         url = em
       }

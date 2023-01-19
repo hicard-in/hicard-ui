@@ -33,23 +33,23 @@ export class SignupComponent implements OnInit {
     username = String(username)
     let password = String(username)
 
-    this.mainService.login(username, password).subscribe((data:any) => {
-      if(data.err) {
-        this.error = "Card Invalid Contact 9717130893"
-      } else {
-        if(data.isActivated) {
-          this.error = null;
-          localStorage.setItem("token", data.key)
-          localStorage.setItem("username", String(username))
-          this.router.navigate([`/${username}`])
-        } else {
-          console.log("Reaching here")
-          localStorage.setItem("token", data.key)
-          localStorage.setItem("username", String(username))
-          // this.router.navigate([`/setup`])
-        }
-      }
-    })
+    this.login(username, password);
+    // this.mainService.login(username, password).subscribe((data:any) => {
+    //   if(data.err) {
+    //     this.error = "Card Invalid Contact 9717130893"
+    //   } else {
+    //     if(data.isActivated) {
+    //       this.error = null;
+    //       localStorage.setItem("token", data.jwt)
+    //       localStorage.setItem("username", String(username))
+    //       this.router.navigate([`/${username}`])
+    //     } else {
+    //       localStorage.setItem("token", data.jwt)
+    //       localStorage.setItem("username", String(username))
+    //       // this.router.navigate([`/setup`])
+    //     }
+    //   }
+    // })
   }
 
   alphaNumeric(event:any): boolean {
@@ -78,16 +78,44 @@ export class SignupComponent implements OnInit {
 
     this.mainService.signup(username, password).subscribe((data:any)=>{
       this.error = null
-      if(data.err) {
-        this.error = data.message
-      } else {
-        localStorage.setItem("token", data.key)
-        localStorage.setItem("username", String(username))
-        this.router.navigate([`/setting`])
-      }
+      console.log(data)
+      this.login(username, password)
+      // if(data.err) {
+      //   this.error = data.message
+      // } else {
+      //   localStorage.setItem("token", data.key)
+      //   localStorage.setItem("username", String(username))
+      //   this.router.navigate([`/setting`])
+      // }
+    }, (error)=>{
+      console.log(error)
+      this.error = "Username already taken"
     })
 
 
+  }
+
+  login(username:string, password:string) {
+    this.mainService.login(username, password).subscribe((data:any) => {
+      if(data.err) {
+        this.error = "Card Invalid Contact 9717130893"
+      } else {
+        console.log("Here wer are", data)
+        if(data.user.isActivated) {
+          this.error = null;
+          localStorage.setItem("token", data.jwt)
+          localStorage.setItem("username", String(username))
+          this.router.navigate([`/setting`])
+        } else {
+          localStorage.setItem("token", data.jwt)
+          localStorage.setItem("username", String(username))
+          // this.router.navigate([`/setup`])
+        }
+      }
+    }, (error)=>{
+      console.log(error)
+      this.error = "Card Invalid Contact 9717130893"
+    })
   }
 
 }
