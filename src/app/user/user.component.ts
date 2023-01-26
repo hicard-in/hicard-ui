@@ -87,7 +87,7 @@ export class UserComponent implements OnInit {
         let linkarr = this.profile[category][linkType]
         linkarr.forEach((theLink:any)=>{
           if(theLink) {
-            let linkObj = this.setting[category][linkType]
+            let linkObj = JSON.parse(JSON.stringify(this.setting[category][linkType]))
             linkObj['link'] = theLink?.value
             linkObj['linkType'] = linkType
             this.linksList.push(linkObj)
