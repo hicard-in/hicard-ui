@@ -35,7 +35,6 @@ export class UserComponent implements OnInit {
   showEdit:boolean = false;
 
   async ngOnInit() {
-    console.log("Reaching here")
     let username = this.route.snapshot.params['id'];
     let localStorageUsername = this.mainService.getUserName();
     this.showEdit = username == localStorageUsername;
@@ -58,8 +57,6 @@ export class UserComponent implements OnInit {
       this.router.navigate([`/shop`])
       return
     }
-
-    console.log(this.user, "VIAHAL")
 
     if(this.user.isActivated === false || this.user.isActivated === null) {
       this.router.navigate([`/setup`, {username: username}])
@@ -102,7 +99,6 @@ export class UserComponent implements OnInit {
   }
 
   public generateVCardOnTheFly = () => {
-    console.log(this.profile)
     let firstName = this.profile.name.split(" ")[0]
     let lastName = this.profile.name.split(" ")?.[1] ? this.profile.name.split(" ")?.[1] : ''
 
@@ -110,23 +106,21 @@ export class UserComponent implements OnInit {
     let telephone: string[] = [];
     let url:string = "";
 
-    this.profile?.contact_info?.email?.forEach((em:string | null) => {
+    this.profile?.contact_info?.email?.forEach((em:any) => {
       if(em){
-        console.log(em)
-        emailList.push(em)
+        emailList.push(em.value)
       }
     });
 
-    this.profile?.contact_info?.phone?.forEach((em:string | null) => {
+    this.profile?.contact_info?.phone?.forEach((em:any) => {
       if(em){
-        console.log(em)
-        telephone.push(em)
+        telephone.push(em.value)
       }
     });
 
-    this.profile?.contact_info?.website?.forEach((em:string | null) => {
-      if(em && url != "") {
-        url = em
+    this.profile?.contact_info?.website?.forEach((em:any) => {
+      if(em && url == "") {
+        url = em.value
       }
     })
     
