@@ -29,9 +29,9 @@ export class ShopComponent implements OnInit {
       return 0
     }
     if(this.shopFG.get('type')?.value === 'std') {
-      return parseInt(this.shopFG.get('quantity')?.value) * 299;
+      return parseInt(this.shopFG.get('quantity')?.value) * 199;
     } else {
-      return parseInt(this.shopFG.get('quantity')?.value) * 499;
+      return parseInt(this.shopFG.get('quantity')?.value) * 299;
     }
   }
 
