@@ -289,7 +289,19 @@ export class MainService {
         
         window.open(theLink, "_blank");
         break
-        
+      
+      case 'instagram':
+        this.userNameFollowLink("instagram", "https://www.instagram.com/", theLink);
+        break
+      
+      case 'linkedIn':
+        this.userNameFollowLink("linkedin", "https://www.linkedin.com/in/", theLink);
+        break
+      
+      case 'twitter': 
+        this.userNameFollowLink("twitter", "https://twitter.com/", theLink);
+        break
+
       default:
         if (!/^http[s]?:\/\//.test(theLink)) {
           theLink = 'http://' + theLink
@@ -297,6 +309,23 @@ export class MainService {
         window.open(theLink, "_blank");
         break;
     }
+  }
+
+  defaultFollowLink(theLink:any) {
+    if (!/^http[s]?:\/\//.test(theLink)) {
+      theLink = 'http://' + theLink
+    }
+    window.open(theLink, "_blank");
+  }
+  
+  userNameFollowLink(domain:string, baseUrl:string, theLink:string) {
+    if(!theLink.includes("/") && !theLink.includes(domain) && !theLink.includes(".com")) {
+      let igLink = baseUrl+theLink
+      window.open(igLink, "_blank");
+    } else {
+      this.defaultFollowLink(theLink);
+    }
+
   }
 
 }

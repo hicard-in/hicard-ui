@@ -14,7 +14,7 @@
   <div class="header-card">
     <div class="banner" style="--bg-image: url({{this.profileFG.value?.banner?.url}})">
       <span class="profile-photo">
-        <div class="figure" style="--bg-image: url({{mainService.isUploadingPhoto ? '/assets/loading.gif' : this.profileFG.value?.photo?.url ? this.profileFG.value?.photo?.url : defaultDP}})">
+        <div class="figure" style="--bg-image: url({{mainService.isUploadingPhoto ? '/assets/loading.gif' : this.profileFG.value?.photo?.formats?.thumbnail?.url ? this.profileFG.value?.photo?.formats?.thumbnail?.url : defaultDP}})">
         </div>
         <span class="upload-icon">
           <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event, 'photo')">
