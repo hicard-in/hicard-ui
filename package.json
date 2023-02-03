@@ -10,7 +10,7 @@
     "dev:ssr": "ng run frontend:serve-ssr",
     "serve:ssr": "node dist/frontend/server/main.js",
     "build:ssr": "ng build && ng run frontend:server",
-    "prerender": "ng run frontend:prerender"
+    "prerender": "ng run frontend:prerender --routes-file routes.txt"
   },
   "private": true,
   "dependencies": {
