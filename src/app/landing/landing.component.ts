@@ -15,12 +15,6 @@ export class LandingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.mainService.checkLoggedIn() && this.mainService.getUserName()) {
-      let username = this.mainService.getUserName()
-      this.router.navigate([`/${username}`])
-    } else {
-      this.router.navigate(['/shop'])
-    }
   }
 
 }
