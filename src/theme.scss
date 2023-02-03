@@ -22,7 +22,7 @@
 * Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48I2ZmZmRmZiIsIj9lcjwjZmZmZWZmIiwiO2VyPCNmZmZjZmZ$LCIlPmBePCM3OTc5NzkiLCI~ZXI8I2Q3ZDdkNyIsIjtlcjwjNWM1YzVjfiwid2Fybj5gXjwjZmZmZmZmIiwiP2VyPCNmZmZmZmYiLCI7ZXI8I2ZmZmZmZn4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxSb3VuZGVkIiwiP25lc3M$ZmFsc2UsInZlcnNpb24$MTF9
 */
 
-@import 'node_modules/@angular/material/theming.scss';
+@import 'node_modules/@angular/material/_theming.scss';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -162,7 +162,7 @@ $mat-dark-theme-background: (
 );
 
 // Compute font config
-// @include mat-core();
+@include mat-core();
 
 // Theme Config
 
@@ -174,7 +174,18 @@ body {
   --text-primary-lighter-color: #{$dark-primary-text};
   --text-primary-darker-color: #{$dark-primary-text};
 }   
-$mat-primary: #fffdff;
+$mat-primary: (
+  main: #fffdff,
+  lighter: #fffeff,
+  darker: #fffcff,
+  200: #fffdff, // For slide toggle,
+  contrast : (
+    main: $dark-primary-text,
+    lighter: $dark-primary-text,
+    darker: $dark-primary-text,
+  )
+);
+$theme-primary: mat-palette($mat-primary, main, lighter, darker);
 
 
 body {
@@ -196,7 +207,7 @@ $mat-accent: (
     darker: $light-primary-text,
   )
 );
-// $theme-accent: mat-palette($mat-accent, main, lighter, darker);
+$theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
 
 body {
@@ -218,9 +229,11 @@ $mat-warn: (
     darker: $dark-primary-text,
   )
 );
+$theme-warn: mat-palette($mat-warn, main, lighter, darker);
+;
 
-// $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
-// $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+$altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 
 // Theme Init
 @include angular-material-theme($theme);
