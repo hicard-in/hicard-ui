@@ -2,7 +2,7 @@
 # all contexts unless otherwise overridden by more specific contexts.
 [build]
 
-  publish = "dist/"
+  publish = "dist/frontent/browser/"
 
   # Default build command.
   command = "npm run prerender"
