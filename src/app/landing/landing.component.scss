@@ -37,6 +37,7 @@
         font-weight: bolder;
         color: rgb(50, 50, 50);
       }
+
     }
   }
 }
@@ -166,5 +167,12 @@
   }
   .banner{
     background-size: 100% auto;
+  }
+  .header{
+    .content{
+      .text{
+        font-size: 13px!important;
+      }
+    }
   }
 }
