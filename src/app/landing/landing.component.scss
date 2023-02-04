@@ -25,7 +25,9 @@
     padding-right: 30px;
     z-index: 1000;
     .links{
-      span{
+      a{
+        text-decoration: none;
+        color: black;
         margin: 0 10px;
         cursor: pointer;
       }
