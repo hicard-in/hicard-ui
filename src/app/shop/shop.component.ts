@@ -8,7 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    window.location.href = "https://hicards.in"
+  }
 
   shopFG: FormGroup = this.fb.group({
     name: ['', Validators.required],
@@ -22,6 +24,7 @@ export class ShopComponent implements OnInit {
   })
 
   ngOnInit(): void {
+    window.location.href = "https://hicards.in"
   }
 
   getCost() {

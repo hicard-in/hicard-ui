@@ -2,10 +2,10 @@
 # all contexts unless otherwise overridden by more specific contexts.
 [build]
 
-  publish = "dist/frontend/browser/"
+  publish = "dist/"
 
   # Default build command.
-  command = "npm run prerender"
+  command = "npm run build"
 
 # The following redirect is intended for use with most SPAs
 # that handle routing internally.
