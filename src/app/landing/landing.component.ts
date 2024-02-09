@@ -13,11 +13,11 @@ export class LandingComponent implements OnInit {
     private mainService: MainService,
     private router: Router
   ) { 
-    window.location.href = "https://hicards.in"
+    window.location.href = "https://hicard.in"
   }
 
   ngOnInit(): void {
-    window.location.href = "https://hicards.in"
+    window.location.href = "https://hicard.in"
   }
 
 }
