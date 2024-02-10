@@ -55,7 +55,8 @@ export class MainService {
 
   async getProfile(username:string) {
     if(!this.userProfile) {
-      let res:any = this.http.get(`${environment.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`)
+      // let res:any = this.http.get(`${environment.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`)
+      let res:any = this.http.get(`https://bucket.hicard.in/api/${username}.json`)
       res = await lastValueFrom(res)
       if(res.err) {
         return res
