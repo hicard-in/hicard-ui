@@ -47,13 +47,13 @@ export class UserComponent implements OnInit {
     
     this.defaultDp += this.profile?.userId;
 
-    if(this.profile.username && this.profile.username != username) {
+    if(this.profile?.username && this.profile?.username != username) {
       this.router.navigate([`/${this.profile.username}`])
       this.ngOnInit()
       return
     }
     
-    if(!this.profile.userId) {
+    if(!this.profile?.userId) {
       this.router.navigate([`/shop`])
       return
     }
