@@ -75,6 +75,16 @@ export class SignupComponent implements OnInit {
       this.error = "Password do not match"
       return
     }
+    
+    if(username.length < 5) {
+      this.error = "Username must be at least 5 characters"
+      return
+    }
+
+    if(password.length < 6) {
+      this.error = "Password length must be at least 6 characters"
+      return
+    }
 
     this.mainService.signup(username, password).subscribe((data:any)=>{
       this.error = null

@@ -14,7 +14,7 @@
     <div class="card-shadow"></div>
   </section>
 
-  <section class="order" [formGroup]="shopFG">
+  <section class="order" [formGroup]="shopFG" *ngIf="false">
 
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="input-field" formControlName="type">
       <mat-button-toggle value="std" style="width: 50%;">Standard</mat-button-toggle>
@@ -67,6 +67,22 @@
     </div>
     
     <button class="order-button" (click)="orderNow()">Order Now</button>
+    <a routerLink="/login" class="login-link"> Already have card, login here 👉</a>
+  </section>
+
+  <section class="signup order" [formGroup]="signUpFG">
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Email</mat-label>
+      <input type="text" matInput formControlName="email">
+    </mat-form-field>
+    <div class="error" style="display: flex; justify-content: center;">
+    <span *ngIf="error.display">
+        {{error.message}}
+      </span>
+    </div>
+
+    <br><br>
+    <button class="order-button" (click)="signUpNow()">Create Your Card</button>
     <a routerLink="/login" class="login-link"> Already have card, login here 👉</a>
   </section>
 

@@ -337,4 +337,11 @@ export class MainService {
 
   }
 
+  signUpNow(email: string) {
+    let url = `${environment.apiUrl}/api/signup`
+    return this.http.post(url, {
+      email
+    })
+  }
+
 }

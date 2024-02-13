@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from '../../environments/environment';
+import { MainService } from '../main.service';
 
 @Component({
   selector: 'app-shop',
@@ -8,8 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ShopComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private mainService: MainService
+  ) {
     // window.location.href = "https://hicard.in"
+  }
+
+  error = {
+    display: false,
+    message: ""
   }
 
   shopFG: FormGroup = this.fb.group({
@@ -21,6 +31,10 @@ export class ShopComponent implements OnInit {
     pincode: ['', Validators.required],
     address: ['', Validators.required],
     quantity: ['1', Validators.required]
+  })
+
+  signUpFG: FormGroup = this.fb.group({
+    email: ['', Validators.email], 
   })
 
   ngOnInit(): void {
@@ -77,6 +91,33 @@ export class ShopComponent implements OnInit {
     let link = `https://wa.me/917303258121?text=${textToSend}`
     window.location.href = link
     console.log(this.shopFG.value)
+  }
+
+  signUpNow() {
+    let signupDetail = this.signUpFG.value
+
+    this.error.display = false;
+    let email = this.signUpFG.value.email;
+
+    if(email === "" || !this.signUpFG.valid){
+      this.error.display = true;
+      this.error.message = "Please Enter a valid Email"
+      return
+    }
+
+    this.mainService.signUpNow(email).subscribe((res:any)=>{
+      console.log(res.username)
+      let username = res.username
+      window.location.href = `/${username}`
+    }, err => {
+      this.error.display = true;
+      this.error.message = err.error.error.message
+      this.error.message += ", Try Logging in"
+      return
+    })
+
+
+    console.log()
   }
 
 }
