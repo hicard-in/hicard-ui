@@ -53,13 +53,16 @@ export class MainService {
     })
   }
 
-  async getProfile(username:string) {
-    if(!this.userProfile) {
+  async getProfile(username:string, updating:boolean = false) {
+    if(!this.userProfile || updating) {
 
       let res:any = {}
       try {
-        // res = await this.http.get(`${environment.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`).toPromise()
-        res = await this.http.get(`https://bucket.hicard.in/api/${username}.json`).toPromise()
+        if(updating) {
+          res = await this.http.get(`${environment.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`).toPromise()
+        } else {
+          res = await this.http.get(`https://bucket.hicard.in/api/${username}.json?random=${Math.random() * 1000}`).toPromise()
+        }
       } catch (error:any) {
         if(error.status === 404) {
           res['err'] = error
@@ -242,7 +245,8 @@ export class MainService {
       }).subscribe(async (data)=>{
         this.userProfile = null
         let username = String(localStorage.getItem('username'))
-        await this.getProfile(username)
+        await this.getProfile(username, true)
+        await this.saveProfile()
         console.log(data)
         this.isUploadingPhoto = false
       })
