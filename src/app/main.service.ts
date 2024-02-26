@@ -99,23 +99,23 @@ export class MainService {
   getLinkFormControlList() {
     return [
       this.fb.group({
-        id: [null],
+        
         value: ['']
       }),
       this.fb.group({
-        id: [null],
+        
         value: ['']
       }),
       this.fb.group({
-        id: [null],
+        
         value: ['']
       }),
       this.fb.group({
-        id: [null],
+        
         value: ['']
       }),
       this.fb.group({
-        id: [null],
+        
         value: ['']
       })
     ]
