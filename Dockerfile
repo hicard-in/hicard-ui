@@ -16,4 +16,4 @@ RUN mv /dist /app/dist
 
 RUN npm install live-server -g
 
-CMD [ "live-server", "dist/frontend/browser/", "--entry-file=index.html" ]
+CMD [ "live-server", "dist/frontend/browser/", "--entry-file=index.html", "--port=4000" ]
