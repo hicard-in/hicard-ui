@@ -5,7 +5,7 @@
   publish = "dist/frontend/browser/"
 
   # Default build command.
-  command = "npm run build"
+  command = "npm run build:prod"
 
 # The following redirect is intended for use with most SPAs
 # that handle routing internally.
