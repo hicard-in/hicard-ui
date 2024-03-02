@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://api-v1.hicard.in:1338/",
-  apiUrlR: "https://api-v1.hicard.in:1338"
+  apiUrl: window.location.origin.replace(window.location.host, `api.${window.location.host}`)
 };
