@@ -24,7 +24,7 @@ export class MainService {
     private http: HttpClient,
     private fb: FormBuilder,
   ) {
-    this.apiUrl = environment.apiUrl || window.location.origin.replace(window.location.host, `api.${window.location.host}`)
+    this.apiUrl = environment.apiUrl || window.location.origin.replace(window.location.host, `api.${window.location.host}/`)
   }
   
 
