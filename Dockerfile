@@ -14,4 +14,6 @@ RUN rm -r /app
 
 RUN mv /dist /app/dist
 
-CMD [ "node", "dist/frontend/server/main.js" ]
+RUN npm install live-server -g
+
+CMD [ "live-server dist/frontend/browser/ --entry-file=index.html" ]

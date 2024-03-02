@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { settings } from 'src/configs/settings';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { defaultProfile } from 'src/configs/profile';
-import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, lastValueFrom } from 'rxjs';
 
 
@@ -20,17 +18,18 @@ export class MainService {
   isSubscribing:boolean = false;
   isUploadingPhoto:boolean = false;
   isSavingData:boolean = false;
+  apiUrl:string = '';
   
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    private route:ActivatedRoute,
-    private router: Router
   ) {
+    this.apiUrl = environment.apiUrl || window.location.origin.replace(window.location.host, `api.${window.location.host}`)
   }
+  
 
   login(username:string, password:string) {
-    return this.http.post(environment.apiUrl+"api/auth/local/", {
+    return this.http.post(this.apiUrl+"api/auth/local/", {
       identifier: username,
       password
     }, {
@@ -42,7 +41,7 @@ export class MainService {
 
   signup(username:string, password:string) {
     let token = String(localStorage.getItem("token"))
-    return this.http.put(environment.apiUrl+"api/user/me", {
+    return this.http.put(this.apiUrl+"api/user/me", {
       username,
       password,
       isActivated: true
@@ -59,7 +58,7 @@ export class MainService {
       let res:any = {}
       try {
         if(updating) {
-          res = await this.http.get(`${environment.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`).toPromise()
+          res = await this.http.get(`${this.apiUrl}api/users/?filters[$or][0][username][$eq]=${username}&filters[$or][1][userId][$eq]=${username}&populate=deep`).toPromise()
         } else {
           res = await this.http.get(`https://bucket.hicard.in/api/${username}.json?random=${Math.random() * 1000}`).toPromise()
         }
@@ -182,7 +181,7 @@ export class MainService {
 
   async updateProfile(profileValue:any) {
     let token = String(localStorage.getItem('token'))
-    this.http.put(environment.apiUrl+"api/user/me", profileValue, {
+    this.http.put(this.apiUrl+"api/user/me", profileValue, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -238,7 +237,7 @@ export class MainService {
       fd.append('refId', userId);
       fd.append('ref', 'plugin::users-permissions.user');
       fd.append('field', field);
-      this.http.post(environment.apiUrl+"api/upload", fd, {
+      this.http.post(this.apiUrl+"api/upload", fd, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -342,7 +341,7 @@ export class MainService {
   }
 
   signUpNow(email: string) {
-    let url = `${environment.apiUrl}/api/signup`
+    let url = `${this.apiUrl}/api/signup`
     return this.http.post(url, {
       email
     })
