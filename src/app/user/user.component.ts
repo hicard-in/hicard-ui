@@ -169,4 +169,8 @@ export class UserComponent implements OnInit {
     return result
   };
 
+  showQR() {
+    this.router.navigate([`/qr/${this.profile.username}`])
+  }
+
 }

@@ -27,6 +27,9 @@ import { ContactUsComponent } from './brand/contact-us/contact-us.component';
 import { TermsAndConditionsComponent } from './brand/terms-and-conditions/terms-and-conditions.component';
 import { CancellationAndRefundPoliciesComponent } from './brand/cancellation-and-refund-policies/cancellation-and-refund-policies.component';
 import { FooterComponent } from './footer/footer.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrComponent } from './qr/qr.component';
+
 
 
 @NgModule({
@@ -45,7 +48,8 @@ import { FooterComponent } from './footer/footer.component';
     ContactUsComponent,
     TermsAndConditionsComponent,
     CancellationAndRefundPoliciesComponent,
-    FooterComponent
+    FooterComponent,
+    QrComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -59,7 +63,8 @@ import { FooterComponent } from './footer/footer.component';
     MatProgressBarModule,
     NgxVcardModule,
     MatButtonToggleModule,
-    MatButtonModule
+    MatButtonModule,
+    QRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

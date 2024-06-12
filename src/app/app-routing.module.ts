@@ -12,6 +12,7 @@ import { ContactUsComponent } from './brand/contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './brand/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './brand/terms-and-conditions/terms-and-conditions.component';
 import { CancellationAndRefundPoliciesComponent } from './brand/cancellation-and-refund-policies/cancellation-and-refund-policies.component';
+import { QrComponent } from './qr/qr.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,14 @@ const routes: Routes = [
   {
     "path": "setting/:category/:id",
     component: SettingLinkComponent
+  },
+  {
+    "path": "qr",
+    component: QrComponent
+  },
+  {
+    "path": "qr/:id",
+    component: QrComponent
   },
   {
     "path": ":id",
