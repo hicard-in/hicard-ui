@@ -89,6 +89,7 @@
   border: 1px solid grey;
   margin-top: 10px;
   border-radius: 30px;
+  position: relative;
 }
 
 .content{
@@ -217,4 +218,9 @@
 
 .nodisplay{
   display: none;
+}
+.disclaimer{
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
 }
