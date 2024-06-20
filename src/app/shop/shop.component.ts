@@ -17,6 +17,8 @@ export class ShopComponent implements OnInit {
     // window.location.href = "https://hicard.in"
   }
 
+  isLoading:boolean = false;
+
   error = {
     display: false,
     message: ""
@@ -94,6 +96,7 @@ export class ShopComponent implements OnInit {
   }
 
   signUpNow() {
+    this.isLoading = true
     let signupDetail = this.signUpFG.value
 
     this.error.display = false;
@@ -102,17 +105,20 @@ export class ShopComponent implements OnInit {
     if(email === "" || !this.signUpFG.valid){
       this.error.display = true;
       this.error.message = "Please Enter a valid Email"
+      this.isLoading = false;
       return
     }
 
     this.mainService.signUpNow(email).subscribe((res:any)=>{
       console.log(res.username)
       let username = res.username
+      this.isLoading = false
       window.location.href = `/${username}`
     }, err => {
       this.error.display = true;
       this.error.message = err.error.error.message
       this.error.message += ", Try Logging in"
+      this.isLoading = false;
       return
     })
 

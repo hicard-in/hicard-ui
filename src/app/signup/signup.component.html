@@ -1,7 +1,7 @@
 <section class="content-login">
   <section class="login-box" [formGroup]="signupFG">
     <div class="title">
-      Setup Card
+      Setup Your hiCard
     </div>
     <mat-form-field class="input-field" appearance="outline">
       <mat-label class="thelabel">Username</mat-label>
@@ -15,6 +15,10 @@
       <mat-label class="thelabel">Re Enter Password</mat-label>
       <input type="password" matInput formControlName="repassword">
     </mat-form-field>
+    <div style="width: 100%;" *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <br>
     <button class="login-button" (click)="signup()">
       Go
     </button>

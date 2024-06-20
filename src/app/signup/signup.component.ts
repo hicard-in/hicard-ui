@@ -22,6 +22,8 @@ export class SignupComponent implements OnInit {
     password: ['', Validators.required],
     repassword: ['', Validators.required]
   })
+
+  isLoading:boolean = false
   
   error:any = null;
   ngOnInit(): void {
@@ -61,9 +63,10 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-
+    this.isLoading = true
     if(!this.signupFG.valid) {
       this.error = "All fields are mandatory"
+      this.isLoading = false
       return
     }
 
@@ -73,22 +76,26 @@ export class SignupComponent implements OnInit {
     
     if(password != repassword) {
       this.error = "Password do not match"
+      this.isLoading = false
       return
     }
     
     if(username.length < 5) {
       this.error = "Username must be at least 5 characters"
+      this.isLoading = false
       return
     }
 
     if(password.length < 6) {
       this.error = "Password length must be at least 6 characters"
+      this.isLoading = false
       return
     }
 
     this.mainService.signup(username, password).subscribe((data:any)=>{
       this.error = null
       console.log(data)
+      this.isLoading = false
       this.login(username, password)
       // if(data.err) {
       //   this.error = data.message
@@ -99,6 +106,7 @@ export class SignupComponent implements OnInit {
       // }
     }, (error)=>{
       console.log(error)
+      this.isLoading = false
       this.error = "Username already taken"
     })
 

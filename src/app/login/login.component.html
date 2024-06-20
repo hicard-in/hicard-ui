@@ -11,11 +11,15 @@
       <mat-label class="thelabel">Password</mat-label>
       <input type="password" matInput formControlName="password">
     </mat-form-field>
+    <b class="error-message">{{error}}</b>
+    <div style="width: 100%;" *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <br>
     <button class="login-button" (click)="login()">
       Go
     </button>
     <br>
     <a routerLink="/shop" class="shop-link"> Don't have card? Get it from here 👉</a>
-    <b class="error-message">{{error}}</b>
   </section>
 </section>

@@ -75,6 +75,11 @@
       <mat-label class="thelabel">Email</mat-label>
       <input type="text" matInput formControlName="email">
     </mat-form-field>
+    <br>
+    <br>
+    <div *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
     <div class="error" style="display: flex; justify-content: center;">
     <span *ngIf="error.display">
         {{error.message}}

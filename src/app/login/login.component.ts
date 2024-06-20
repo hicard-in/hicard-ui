@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MainService } from '../main.service';
 import { Router } from '@angular/router';
 
@@ -19,16 +19,28 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  error = null;
+  isLoading:boolean = false;
+  error:any = null;
 
   loginFG: FormGroup = this.fb.group({
-    username: [''],
-    password: ['']
+    username: ['', Validators.required],
+    password: ['', Validators.required]
   })
 
   login() {
+    this.isLoading = true
     let username = this.loginFG.value.username
     let password = this.loginFG.value.password
+
+
+    if(!this.loginFG.valid) {
+      this.error = "All fields are mandatory"
+      this.isLoading = false
+      return
+    }
+
+
+
     this.mainService.login(username, password).subscribe((data:any) => {
       console.log(data)
       if(data.err) {
@@ -43,8 +55,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate([`/setup`])
         }
       }
+      this.isLoading = false
     }, (err)=>{
       if(err.error.error.status === 400) {
+        this.isLoading = false;
         this.error = err.error.error.message.replace("identifier", "username")
       }
     })

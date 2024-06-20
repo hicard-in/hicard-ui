@@ -21,6 +21,8 @@
   justify-content: center;
   flex-direction: column;
   background-color: #192734;
+  padding: 25px;
+  box-shadow: 0 1px 6px hsla(0, 0, 0, 0.3);
   border-radius: 15px;
   padding-bottom: 30px;
   
@@ -43,5 +45,9 @@
     font-size: 14px;
     font-weight: bolder;
     outline: none;
+    box-shadow: 0 1px 6px hsla(0, 0, 0, 0.3);
+    &:hover{
+      box-shadow: none;
+    }
   }
 }
