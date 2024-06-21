@@ -65,4 +65,8 @@ export class LoginComponent implements OnInit {
 
   }
 
+  signUpWithGoogle() {
+    this.mainService.signUpWithGoogle()
+  }
+
 }

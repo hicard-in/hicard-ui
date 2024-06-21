@@ -13,6 +13,7 @@ import { PrivacyPolicyComponent } from './brand/privacy-policy/privacy-policy.co
 import { TermsAndConditionsComponent } from './brand/terms-and-conditions/terms-and-conditions.component';
 import { CancellationAndRefundPoliciesComponent } from './brand/cancellation-and-refund-policies/cancellation-and-refund-policies.component';
 import { QrComponent } from './qr/qr.component';
+import { CallbackComponent } from './callback/callback.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     "path": "setting/:category/:id",
     component: SettingLinkComponent
+  },
+  {
+    "path": "callback",
+    component: CallbackComponent
   },
   {
     "path": "qr",

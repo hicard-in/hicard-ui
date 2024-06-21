@@ -347,4 +347,33 @@ export class MainService {
     })
   }
 
+  signUpWithGoogle() {
+    let url = `${this.apiUrl}/api/connect/google`
+    // window.open(url, '_blank')
+    window.location.href = url;
+  }
+
+  async convertTokenWithJqtGoogle(query:any) {
+    let url = `${this.apiUrl}/api/auth/google/callback?${query}`
+    let response = await this.getWithPromise(url)
+    return response
+  }
+
+  getWithPromise(url:string) {
+    return new Promise((resolve, reject)=>{
+      this.http.get(url).subscribe((data:any)=>{
+        let jwt = data?.jwt
+        let username = data?.user?.username
+        if(jwt && username) {
+          console.log(jwt, username)
+          localStorage.setItem("token", jwt)
+          localStorage.setItem("username", String(username))
+          resolve(true)
+        } else {
+          reject(false)
+        }
+      })
+    })
+  }
+
 }

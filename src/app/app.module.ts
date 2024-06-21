@@ -29,6 +29,7 @@ import { CancellationAndRefundPoliciesComponent } from './brand/cancellation-and
 import { FooterComponent } from './footer/footer.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QrComponent } from './qr/qr.component';
+import { CallbackComponent } from './callback/callback.component';
 
 
 
@@ -49,7 +50,8 @@ import { QrComponent } from './qr/qr.component';
     TermsAndConditionsComponent,
     CancellationAndRefundPoliciesComponent,
     FooterComponent,
-    QrComponent
+    QrComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

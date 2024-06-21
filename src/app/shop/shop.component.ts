@@ -126,4 +126,8 @@ export class ShopComponent implements OnInit {
     console.log()
   }
 
+  signUpWithGoogle() {
+    this.mainService.signUpWithGoogle()
+  }
+
 }
