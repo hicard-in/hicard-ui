@@ -1,0 +1,27 @@
+<section class="content-login">
+  <section class="login-box" [formGroup]="loginFG">
+    <div class="title">
+      Login
+    </div>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Username</mat-label>
+      <input type="text" matInput formControlName="username">
+    </mat-form-field>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Password</mat-label>
+      <input type="password" matInput formControlName="password">
+    </mat-form-field>
+    <b class="error-message">{{error}}</b>
+    <div style="width: 100%;" *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <br>
+    <button class="login-button" (click)="login()">
+      Go
+    </button>
+    <br>
+    <button class="login-button" (click)="signUpWithGoogle()">Continue with <i class="fa-brands fa-google"></i>oogle</button>
+    <br>
+    <a routerLink="/shop" class="shop-link"> Don't have card? Get it from here 👉</a>
+  </section>
+</section>

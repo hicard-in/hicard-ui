@@ -1,0 +1,7 @@
+<section class="qr-code">
+    <span class="close-button"><a href="/{{this.username}}">x</a></span>
+    <!-- <img [src]="profile?.photo?.url" alt="" width="100"> -->
+     <h1 class="profile-title">{{profile?.name}}</h1>
+     <div class="link"><a href="/{{this.username}}" class="link">https://hicard.in/{{this.username}}</a></div>
+    <qrcode [qrdata]="'https://hicard.in/'+this.username" [width]="350" [errorCorrectionLevel]="'M'" colorLight="#15202b" colorDark="#ffffff"></qrcode>
+</section>

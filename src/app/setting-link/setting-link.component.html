@@ -1,0 +1,36 @@
+<section class="content-setting-link">
+  <section class="header">
+    <span class="back-button" routerLink="/setting"><i class="fa-solid fa-circle-arrow-left"></i></span>
+    <span class="title">
+      Edit {{setting[category][linkType]['title']}}
+    </span>
+  </section>
+
+  <section class="card-list" [formGroup]="sectionFG">
+
+    <ng-container [formArrayName]="linkType" *ngFor="let fc of linkFG.controls; let i = index">
+      <div class="thecard" *ngIf="fc.value.value || i < theLimit">
+        <div class="main-area">
+          <div class="icon"><i class="{{setting[category][linkType]['icon']}}"></i></div>
+          <div class="info-and-action">
+            <span class="title">{{setting[category][linkType]['title']}}</span>
+            <button class="delete" (click)="deleteLink(i)">Delete Link</button>
+            <button class="test" (click)="followLink(i)">Test Link <i class="fa-solid fa-up-right-from-square"></i></button>
+          </div>
+        </div>
+        <div class="input-area" [formGroupName]="i">
+          <mat-form-field class="input-field" appearance="outline">
+            <mat-label class="thelabel">{{setting[category][linkType]['title']}}</mat-label>
+            <input type="text" matInput formControlName="value">
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-container>
+
+  </section>
+
+  <section class="bottom-actions">
+    <!-- <button class="close">Close</button> -->
+    <button class="another" (click)="addAnother()">Add Another</button>
+  </section>
+</section>

@@ -1,0 +1,7 @@
+/
+/shop
+brand/about-us
+brand/contact-us
+brand/privacy-policy
+brand/terms-and-conditions
+brand/cancellation-and-refund-policies

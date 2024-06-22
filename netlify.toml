@@ -1,0 +1,16 @@
+# Settings in the [build] context are global and are applied to
+# all contexts unless otherwise overridden by more specific contexts.
+[build]
+
+  publish = "dist/frontend/browser/"
+
+  # Default build command.
+  command = "npm run build"
+
+# The following redirect is intended for use with most SPAs
+# that handle routing internally.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

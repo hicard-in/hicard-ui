@@ -1,0 +1,18 @@
+name: Docker image CI for GHCR
+
+on:
+  push:
+    branches: [develop]
+    paths-ignore:
+      - "README.md"
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build and publish image
+        run: |
+          docker login ghcr.io --username vishal-pandey --password ${{ secrets.GH_PAT }}
+          docker build . --tag ghcr.io/hicard-in/hicard-ui:latest
+          docker push ghcr.io/hicard-in/hicard-ui:latest

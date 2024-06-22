@@ -1,0 +1,128 @@
+.content-setting-link {
+  max-width: 500px;
+  min-height: 90vh;
+  // border: 1px solid blue;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  color: white;
+}
+
+.header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  // border: 1px solid white;
+  .back-button{
+    font-size: 25px;
+  }
+  .title{
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.thecard{
+  background-color: #192734;
+  border-radius: 15px;
+  padding: 5px;
+  padding-left: 15px;
+  box-sizing: border-box;
+  margin-top: 10px;
+
+  .main-area{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    .icon{
+      width: 80px;
+      height: 80px;
+      background-color: #3b3c3f;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    .info-and-action{
+      width: calc(100% - 80px);
+      padding: 15px;
+      box-sizing: border-box;
+      .title{
+        width: 100%;
+        display: block;
+        font-size: 18px;
+        font-weight: bolder;
+        padding-left: 15px;
+      }
+      button {
+        width: 40%;
+        height: 40px;
+        margin: 10px;
+        border: none;
+        border-radius: 6px;
+      }
+      .delete {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+        &:hover{
+          border-color: red;
+          cursor: pointer;
+        }
+      }
+      .test{
+        cursor: pointer;
+        &:hover{
+          background-color: transparent;
+          color: white;
+          border: 2px solid white;
+        }
+      }
+    }
+  }
+  .input-area{
+    width: 100%;
+    box-sizing: border-box;
+    // margin: 15px;
+    // margin-top: 15px;
+    .input-field{
+      width: 95%;
+    }
+  }
+}
+
+
+.bottom-actions{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+  button{
+    width: 100px;
+    height: 40px;
+  }
+  .another{
+    border-radius: 5px;
+    border: none;
+    &:hover{
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      cursor: pointer;
+    }
+  }
+}
+
+
+input{ touch-action: none; }
+

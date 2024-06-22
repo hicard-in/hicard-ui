@@ -1,0 +1,96 @@
+<section class="content-shop">
+  <section class="title">
+    <h1>Get your hi Card</h1>
+  </section>
+
+  <section class="hero">
+    <div class="card card-back"></div>
+    <div class="card card-front">
+      <span class="name" *ngIf="shopFG.get('type')?.value === 'std'">
+        <img src="/assets/logo-square.png" width="100">
+      </span>
+      <span class="name-custom" *ngIf="shopFG.get('type')?.value === 'cus'">{{shopFG.get('cardText')?.value || 'hi'}}</span>
+    </div>
+    <div class="card-shadow"></div>
+  </section>
+
+  <section class="order" [formGroup]="shopFG" *ngIf="false">
+
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="input-field" formControlName="type">
+      <mat-button-toggle value="std" style="width: 50%;">Standard</mat-button-toggle>
+      <mat-button-toggle value="cus" style="width: 50%;">Customized</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <br><br>
+    <mat-form-field class="input-field" appearance="outline" *ngIf="shopFG.get('type')?.value === 'cus'">
+      <mat-label class="thelabel">Text On Card</mat-label>
+      <input type="text" matInput formControlName="cardText">
+    </mat-form-field>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Name</mat-label>
+      <input type="text" matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Mobile No.</mat-label>
+      <input type="text" matInput formControlName="phone">
+    </mat-form-field>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Email</mat-label>
+      <input type="text" matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Shipping Address</mat-label>
+      <input type="text" matInput formControlName="address">
+    </mat-form-field>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Pincode</mat-label>
+      <input type="text" matInput formControlName="pincode">
+    </mat-form-field>
+    
+
+    <div class="qty">
+      <button mat-mini-fab color="accent" (click)="costMinus()">
+        -
+      </button>
+      <mat-form-field class="input-field quantity" appearance="outline">
+        <mat-label class="thelabel">Quantity</mat-label>
+        <input type="number" matInput formControlName="quantity">
+      </mat-form-field>
+  
+      <button mat-mini-fab color="accent" (click)="costPlus()">
+        +
+      </button>
+    </div>
+
+    <div class="cost">
+      ₹{{getCost()}}
+    </div>
+    
+    <button class="order-button" (click)="orderNow()">Order Now</button>
+    <a routerLink="/login" class="login-link"> Already have card, login here 👉</a>
+  </section>
+
+  <section class="signup order" [formGroup]="signUpFG">
+    <mat-form-field class="input-field" appearance="outline" *ngIf="false">
+      <mat-label class="thelabel">Email</mat-label>
+      <input type="text" matInput formControlName="email">
+    </mat-form-field>
+    
+    <div *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div class="error" style="display: flex; justify-content: center;">
+    <span *ngIf="error.display">
+        {{error.message}}
+      </span>
+    </div>
+
+    <button class="order-button" (click)="signUpNow()" *ngIf="false">Create Your Card</button>
+    <br>
+    <br>
+    <button class="order-button" (click)="signUpWithGoogle()">Continue with <i class="fa-brands fa-google"></i>oogle</button>
+
+    <a routerLink="/login" class="login-link"> Already have card, login here 👉</a>
+  </section>
+
+</section>

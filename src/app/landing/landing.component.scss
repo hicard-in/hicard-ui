@@ -1,0 +1,236 @@
+.container{
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(244 244 246);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 50px;
+  .mmenu{
+    width: 100%;
+    box-sizing: border-box;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 25px;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    z-index: 1000;
+    .links{
+      a{
+        text-decoration: none;
+        color: black;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+    }
+  }
+  .content{
+    width: 100%;
+    max-width: 1000px;
+    min-height: 100%;
+  }
+  .header{
+    display: block;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    // box-sizing: border-box;
+    .h-content{
+      width: 100%;
+      height: 100%;
+      background: white;
+      border: 1px solid grey;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0px 0px 30px 30px;
+      padding-left: 30px;
+      padding-right: 30px;
+      img{
+        border-radius: 8px;
+      }
+      box-shadow: 0 2px 9px #3142511a, 0 3px 59px #3142510d;
+      .text{
+        font-size: 20px;
+        font-weight: bolder;
+        color: rgb(50, 50, 50);
+      }
+
+    }
+  }
+}
+
+.banner{
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+  background: url('/assets/banner3.webp');
+  background-color: white;
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid grey;
+  margin-top: 10px;
+  border-radius: 30px;
+  // position: relative;
+}
+
+.content{
+  a{
+    text-decoration: none;
+  }
+  .headline{
+    font-size: 30px;
+    color: white;
+    text-shadow: 0 0 1px black;
+    border: 1px solid grey;
+    background-color: rgb(0, 0, 0);
+    display: inline;
+    margin-left: 8%;
+    border-radius: 10px;
+    padding: 2px 30px;
+    margin-bottom: 20px;
+    z-index: 1000;
+  }
+}
+
+.card {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  box-shadow: 0 0 10px 1px #00000014;
+  padding: 10px;
+  margin: 10px;
+  font-size: 20px;
+  line-height: 20px;
+  position: relative;
+
+  .text{
+    text-align: center;
+    font-weight: bolder;
+    color: rgb(100, 100, 100);
+  }
+  
+  .icon{
+    padding: 10px;
+    font-size: 40px;
+    color: white;
+    text-shadow: 0 0 1px black;
+  }
+  .corner{
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+  }
+}
+.features{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.how-it-works, .sample-profile, .book-demo{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.book-demo{
+  justify-content: center;
+}
+.sample-profile{
+  justify-content: space-around;
+  .sample-card{
+    border-radius: 10px;
+    box-shadow: 0 0 10px 1px #00000014;
+  }
+  a{
+    font-size: 100px;
+    margin-right: 10%;
+  }
+  img{
+    max-width: 100%;
+  }
+}
+.section-title{
+  font-size: 30px;
+  line-height: 30px;
+  width: 50%;
+  border-bottom: 1px solid black;
+  padding-left: 30px;
+  font-weight: bolder;
+  color: rgb(50, 50, 50);
+}
+
+@media screen and (max-width: 786px) {
+  .features, .how-it-works{
+    justify-content: center;
+  }
+  .banner{
+    background-size: auto 100%;
+  }
+  .header{
+    .h-content{
+      .text{
+        font-size: 13px!important;
+      }
+    }
+  }
+  .mmenu{
+    border: none!important;
+  }
+  .h-content{
+    .text{
+      display: none;
+    }
+  }
+  .section-title{
+    width: 80%;
+    font-size: 19px;
+  }
+}
+
+
+.nodisplay{
+  display: none;
+}
+.disclaimer{
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}

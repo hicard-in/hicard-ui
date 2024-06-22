@@ -1,0 +1,227 @@
+<section class="content-setting" [formGroup]="profileFG">
+  <section class="header">
+    <h1>Edit Profile</h1>
+    <mat-slide-toggle style="opacity: 0;"></mat-slide-toggle>
+    <span class="link" routerLink="/{{username}}">
+      <i class="fa-solid fa-link"></i>
+      hicard.in/{{username}}
+    </span>
+    
+    <!-- <span class="islive"></span> -->
+  </section>
+
+
+  <div class="header-card">
+    <div class="banner" style="--bg-image: url({{this.profileFG.value?.banner?.url}})">
+      <span class="profile-photo">
+        <div class="figure" style="--bg-image: url({{mainService.isUploadingPhoto ? '/assets/loading.gif' : this.profileFG.value?.photo?.formats?.thumbnail?.url ? this.profileFG.value?.photo?.formats?.thumbnail?.url : defaultDP}})">
+        </div>
+        <span class="upload-icon">
+          <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event, 'photo')">
+          <i class="fa-solid fa-upload"></i>
+        </span>
+      </span>
+      <span class="upload-icon banner-icon">
+        <input type="file" class="theprofilefile" (change)="uploadProfilePhoto($event, 'banner')">
+        <i class="fa-solid fa-upload"></i>
+      </span>
+    </div>
+  </div>
+
+  <br>
+
+  <mat-form-field class="input-field name-input-field" appearance="outline">
+    <mat-label class="thelabel">Name</mat-label>
+    <input type="text" matInput formControlName="name">
+  </mat-form-field>
+
+  <section class="basic-info" [formGroup]="bioFG">
+    <div class="bio-title">Bio</div>
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Headline</mat-label>
+      <input type="text" matInput formControlName="title">
+    </mat-form-field>
+  
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Work</mat-label>
+      <input type="text" matInput formControlName="work">
+    </mat-form-field>
+  
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Location</mat-label>
+      <input type="text" matInput formControlName="location">
+    </mat-form-field>
+  
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Education</mat-label>
+      <input type="text" matInput formControlName="education">
+    </mat-form-field>
+  
+    <mat-form-field class="input-field" appearance="outline">
+      <mat-label class="thelabel">Skill</mat-label>
+      <input type="text" matInput formControlName="skill">
+    </mat-form-field>
+  </section>
+
+  <section class="contact-info link-box">
+    <div class="link-box-title">
+      Contact Info
+    </div>
+    <div class="item" routerLink="/setting/contact_info/website">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-safari"></i></span>
+      <span class="title">Website</span>
+    </div>
+
+    <div class="item" routerLink="/setting/contact_info/email">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+      <span class="title">Email</span>
+    </div>
+
+    <div class="item" routerLink="/setting/contact_info/phone">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-solid fa-phone"></i></span>
+      <span class="title">Phone</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/contact_info/whatsapp">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-whatsapp"></i></span>
+      <span class="title">Whatsapp</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/contact_info/discord">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-discord"></i></span>
+      <span class="title">Discord</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/contact_info/telegram">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-telegram"></i></span>
+      <span class="title">Telegram</span>
+    </div>
+    
+    
+    
+    <div class="item expand">
+      <span class="icon">
+        <i class="fa-solid fa-plus"></i>
+      </span>
+    </div>
+  </section>
+
+  <section class="social-links link-box">
+    <div class="link-box-title">
+      Social Links
+    </div>
+    <div class="item" routerLink="/setting/social_links/linkedIn">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-linkedin"></i></span>
+      <span class="title">LinkedIn</span>
+    </div>
+
+    <div class="item" routerLink="/setting/social_links/instagram">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-instagram"></i></span>
+      <span class="title">Instagram</span>
+    </div>
+
+    <div class="item" routerLink="/setting/social_links/twitter">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-twitter"></i></span>
+      <span class="title">Twitter</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/social_links/facebook">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-facebook"></i></span>
+      <span class="title">Facebook</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/social_links/youtube">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-youtube"></i></span>
+      <span class="title">Youtube</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/social_links/snapchat">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-snapchat"></i></span>
+      <span class="title">Snapchat</span>
+    </div>
+    
+    
+    
+    <div class="item expand">
+      <span class="icon">
+        <i class="fa-solid fa-plus"></i>
+      </span>
+    </div>
+  </section>
+
+  <section class="payment-links link-box">
+    <div class="link-box-title">
+      Payment Links
+    </div>
+    <div class="item" routerLink="/setting/payment/paypal">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-paypal"></i></span>
+      <span class="title">Paypal</span>
+    </div>
+
+    <div class="item" routerLink="/setting/payment/gpay">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-google-pay"></i></span>
+      <span class="title">GPay</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/payment/upi">
+      <span class="filled"></span>
+      <span class="icon"><i> upi </i></span>
+      <span class="title">UPI</span>
+    </div>
+    
+    <div class="item expand">
+      <span class="icon">
+        <i class="fa-solid fa-plus"></i>
+      </span>
+    </div>
+  </section>
+
+  <section class="productivity-links link-box">
+    <div class="link-box-title">
+      Productivity Links
+    </div>
+    <div class="item" routerLink="/setting/productivity/calendly">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-solid fa-calendar-days"></i></span>
+      <span class="title">Calendly</span>
+    </div>
+
+    <div class="item" routerLink="/setting/productivity/notion">
+      <span class="filled"></span>
+      <span class="icon">N</span>
+      <span class="title">Notion</span>
+    </div>
+    
+    <div class="item" routerLink="/setting/productivity/gdrive">
+      <span class="filled"></span>
+      <span class="icon"><i class="fa-brands fa-google-drive"></i></span>
+      <span class="title">GDrive</span>
+    </div>
+    
+    <div class="item expand">
+      <span class="icon">
+        <i class="fa-solid fa-plus"></i>
+      </span>
+    </div>
+  </section>
+
+  <button class="edit-contact-button" (click)="saveProfile()"> <i class="fa-solid fa-pen-to-square"></i> Edit Contact </button>
+
+  
+
+
+</section>
