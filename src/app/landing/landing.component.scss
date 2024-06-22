@@ -81,7 +81,7 @@
   width: 100%;
   height: auto;
   min-height: 500px;
-  background: url('/assets/banner2.webp');
+  background: url('/assets/banner3.webp');
   background-color: white;
   background-size: 100% auto;
   background-position: center;
@@ -89,7 +89,7 @@
   border: 1px solid grey;
   margin-top: 10px;
   border-radius: 30px;
-  position: relative;
+  // position: relative;
 }
 
 .content{
@@ -107,6 +107,7 @@
     border-radius: 10px;
     padding: 2px 30px;
     margin-bottom: 20px;
+    z-index: 1000;
   }
 }
 

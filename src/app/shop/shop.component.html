@@ -71,12 +71,11 @@
   </section>
 
   <section class="signup order" [formGroup]="signUpFG">
-    <mat-form-field class="input-field" appearance="outline">
+    <mat-form-field class="input-field" appearance="outline" *ngIf="false">
       <mat-label class="thelabel">Email</mat-label>
       <input type="text" matInput formControlName="email">
     </mat-form-field>
-    <br>
-    <br>
+    
     <div *ngIf="isLoading">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
@@ -86,8 +85,7 @@
       </span>
     </div>
 
-    <br>
-    <button class="order-button" (click)="signUpNow()">Create Your Card</button>
+    <button class="order-button" (click)="signUpNow()" *ngIf="false">Create Your Card</button>
     <br>
     <br>
     <button class="order-button" (click)="signUpWithGoogle()">Continue with <i class="fa-brands fa-google"></i>oogle</button>
