@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://api-v1.hicard.in:1337/",
-  apiUrlR: "https://api-v1.hicard.in:1337"
+  apiUrl: "https://api-v1.hicard.in/",
+  apiUrlR: "https://api-v1.hicard.in"
 };
 
 /*
