@@ -354,7 +354,7 @@ export class MainService {
   }
 
   async convertTokenWithJqtGoogle(query:any) {
-    let url = `${this.apiUrl}/api/auth/google/callback?${query}`
+    let url = `${this.apiUrl}api/auth/google/callback${query}`
     let response = await this.getWithPromise(url)
     return response
   }
