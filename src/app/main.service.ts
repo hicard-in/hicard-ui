@@ -348,7 +348,7 @@ export class MainService {
   }
 
   signUpWithGoogle() {
-    let url = `${this.apiUrl}/api/connect/google`
+    let url = `${this.apiUrl}api/connect/google`
     // window.open(url, '_blank')
     window.location.href = url;
   }
